@@ -1,0 +1,13 @@
+obj
+Bin
+bin
+output
+App.config
+Web.config
+*.user
+*.suo
+_ReSharper.*
+*.ReSharper*
+*.Cache
+*.cache
+~$*
