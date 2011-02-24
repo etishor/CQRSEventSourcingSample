@@ -1,0 +1,1 @@
+Sample project demonstrating CQRS & EventSourcing with Jonathan Oliver's projects EventStore, NanoServiceBus, CommonDomain and StorageAccess.
