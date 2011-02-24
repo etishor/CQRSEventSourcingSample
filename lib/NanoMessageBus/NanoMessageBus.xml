@@ -1,0 +1,591 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>NanoMessageBus</name>
+  </assembly>
+  <members>
+    <member name="T:NanoMessageBus.Core.IDiscoverMessageTypes">
+      <summary>
+            Indicates the ability to discover all associated types with a particular message.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Core.IDiscoverMessageTypes.GetTypes(System.Object)">
+      <summary>
+            Gets all types associated with the message provided.
+            </summary>
+      <param name="message">The message to be inspected.</param>
+      <returns>Returns all types (including interfaces) associated with the message provided.</returns>
+    </member>
+    <member name="M:NanoMessageBus.Core.IDiscoverMessageTypes.GetTypeNames(System.Object)">
+      <summary>
+            Gets the names all types associated with the message provided.
+            </summary>
+      <param name="message">The message to be inspected.</param>
+      <returns>Returns the names of all types (including interfaces) associated with the message provided.</returns>
+    </member>
+    <member name="T:NanoMessageBus.Core.IHandlePoisonMessages">
+      <summary>
+            Indicates the ability to forward poison messages to the configured poison message queue.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Core.IHandlePoisonMessages.IsPoison(NanoMessageBus.EnvelopeMessage)">
+      <summary>
+            Gets a value indicating whether the message provided is a poison message.
+            </summary>
+      <param name="message">The message to be evaluated.</param>
+      <returns>If the message has been previously handled and is now considered poison, returns true; otherwise false.</returns>
+    </member>
+    <member name="M:NanoMessageBus.Core.IHandlePoisonMessages.ClearFailures(NanoMessageBus.EnvelopeMessage)">
+      <summary>
+            Indicates to the poison message handler that processing was successful.
+            </summary>
+      <param name="message">The message that was processed successfully.</param>
+    </member>
+    <member name="M:NanoMessageBus.Core.IHandlePoisonMessages.HandleFailure(NanoMessageBus.EnvelopeMessage,System.Exception)">
+      <summary>
+            Forwards the message provided to the configured poison message queue after too many failures.
+            </summary>
+      <param name="message">The failed message to forward.</param>
+      <param name="exception">The exception resulting from handling the message.</param>
+    </member>
+    <member name="T:NanoMessageBus.Core.IHandleUnitOfWork">
+      <summary>
+            Indicates the ability to manage a unit of work.
+            </summary>
+      <remarks>
+            Object instances which implement this interface should be designed to be single threaded and
+            should not be shared between threads.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Core.IHandleUnitOfWork.Register(System.Action)">
+      <summary>
+            Registers a particular work item, such as sending a message, to be performed a completion.
+            </summary>
+      <param name="callback">The callback to be invoked which performs the actual work.</param>
+    </member>
+    <member name="M:NanoMessageBus.Core.IHandleUnitOfWork.Complete">
+      <summary>
+            Completes the unit of work.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Core.IHandleUnitOfWork.Clear">
+      <summary>
+            Clears the work that has been previously registered.
+            </summary>
+    </member>
+    <member name="T:NanoMessageBus.Core.IRouteMessagesToHandlers">
+      <summary>
+            Indicates the ability to route an incoming envlope message to all registered message handlers.
+            </summary>
+      <remarks>
+            Object instances which implement this interface should be designed to be single threaded and
+            should not be shared between threads.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Core.IRouteMessagesToHandlers.Route(NanoMessageBus.EnvelopeMessage)">
+      <summary>
+            Routes the message provided to all registered message handlers.
+            </summary>
+      <param name="message">The message to be routed.</param>
+    </member>
+    <member name="T:NanoMessageBus.IHandleMessages`1">
+      <summary>
+            Indicates the ability to handle an incoming message of the specified type.
+            </summary>
+      <typeparam name="T">The type of message to be handled.</typeparam>
+      <remarks>
+            In general, objects instances which implement this interface should be single threaded,
+            but depending upon custom IoC container wire-up configuration and/or handler registration,
+            a specific instance which implements this interface may be designed to be multi-thread safe
+            allowing it to be shared across threads.  A single-threaded handler will typically have the
+            lifespan of a single, logical message whereas a multi-threaded handler may have a variable
+            lifespan dependening upon the container wire-up registration.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.IHandleMessages`1.Handle(`0)">
+      <summary>
+            Handles the message provided.
+            </summary>
+      <param name="message">The message to be handled.</param>
+    </member>
+    <member name="T:NanoMessageBus.IMessageContext">
+      <summary>
+            Provides the current context surrounding the incoming message being handled.
+            </summary>
+      <remarks>
+            Object instances which implement this interface should be designed to be single threaded and
+            should not be shared between threads.  The object lifetime of instances will be the receipt
+            of a single EnvelopeMessage.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.IMessageContext.DeferMessage">
+      <summary>
+            Defers additional processing of the incoming envelope message until a later time.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.IMessageContext.DropMessage">
+      <summary>
+            Stops all additional processing of the incoming envelope message and drops the message.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.IMessageContext.CurrentMessage">
+      <summary>
+            Gets the current message being handled.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.IMessageContext.ContinueProcessing">
+      <summary>
+            Gets a value indicating whether dispatching the current message to handlers should continue.
+            </summary>
+    </member>
+    <member name="T:NanoMessageBus.ISendMessages">
+      <summary>
+            Indicates the ability to send messages to registered recipients.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.ISendMessages.Send(System.Object[])">
+      <summary>
+            Sends the series of messages provided to the registered recipients of the first message.
+            </summary>
+      <param name="messages">The messages to send.</param>
+    </member>
+    <member name="M:NanoMessageBus.ISendMessages.Reply(System.Object[])">
+      <summary>
+            Sends the series of messages provided back to the return address of the current message context.
+            </summary>
+      <param name="messages">The messages to be sent back to the return address.</param>
+    </member>
+    <member name="T:NanoMessageBus.IPublishMessages">
+      <summary>
+            Indicates the ability to publish a message to message subscribers.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.IPublishMessages.Publish(System.Object[])">
+      <summary>
+            Publishes the series of messages provided to the subscribers of the first message.
+            </summary>
+      <param name="messages">The messages to be published.</param>
+    </member>
+    <member name="T:NanoMessageBus.EnvelopeMessage">
+      <summary>
+            The primary message envelope used to hold the metadata and payload necessary to route the message to all intended recipients.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.EnvelopeMessage.#ctor">
+      <summary>
+            Initializes a new instance of the EnvelopeMessage class.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.EnvelopeMessage.#ctor(System.Guid,System.Uri,System.TimeSpan,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.String},System.Collections.Generic.ICollection{System.Object})">
+      <summary>
+            Initializes a new instance of the EnvelopeMessage class.
+            </summary>
+      <param name="messageId">The value which uniquely identifies the envelope message.</param>
+      <param name="returnAddress">The address to which all replies should be directed.</param>
+      <param name="timeToLive">The maximum amount of time the message will live prior to successful receipt.</param>
+      <param name="persistent">A value indicating whether the message is durably stored.</param>
+      <param name="headers">The message headers which contain additional metadata about the logical messages.</param>
+      <param name="logicalMessages">The collection of dispatched logical messages.</param>
+    </member>
+    <member name="P:NanoMessageBus.EnvelopeMessage.MessageId">
+      <summary>
+            Gets the value which uniquely identifies the envelope message.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.EnvelopeMessage.ReturnAddress">
+      <summary>
+            Gets the address to which all replies should be directed.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.EnvelopeMessage.TimeToLive">
+      <summary>
+            Gets the maximum amount of time the message will live prior to successful receipt.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.EnvelopeMessage.Persistent">
+      <summary>
+            Gets a value indicating whether the message is durably stored.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.EnvelopeMessage.Headers">
+      <summary>
+            Gets the message headers which contain additional metadata about the logical messages.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.EnvelopeMessage.LogicalMessages">
+      <summary>
+            Gets the collection of dispatched logical messages.
+            </summary>
+    </member>
+    <member name="T:NanoMessageBus.Endpoints.EndpointException">
+      <summary>
+            Represents an error during communication with an endpoint.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Endpoints.EndpointException.#ctor">
+      <summary>
+            Initializes a new instance of the EndpointException class.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Endpoints.EndpointException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the EndpointException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:NanoMessageBus.Endpoints.EndpointException.#ctor(System.String,System.Exception)">
+      <summary>
+            Initializes a new instance of the EndpointException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+      <param name="inner">The exception that is the cause of the current exception.</param>
+    </member>
+    <member name="M:NanoMessageBus.Endpoints.EndpointException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes a new instance of the EndpointException class.
+            </summary>
+      <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown.</param>
+      <param name="context">The StreamingContext that holds contextual information about the source or destination.</param>
+    </member>
+    <member name="T:NanoMessageBus.Endpoints.IReceiveFromEndpoints">
+      <summary>
+            Indicates the ability to receive a message from an endpoint.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Endpoints.IReceiveFromEndpoints.Receive">
+      <summary>
+            Receives a message from the endpoint, if any.
+            </summary>
+      <returns>The message received, if any; otherwise null.</returns>
+    </member>
+    <member name="P:NanoMessageBus.Endpoints.IReceiveFromEndpoints.EndpointAddress">
+      <summary>
+            Gets the address of the endpoint.
+            </summary>
+    </member>
+    <member name="T:NanoMessageBus.Endpoints.ISendToEndpoints">
+      <summary>
+            Indicates the ability to send a message to an endpoint.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Endpoints.ISendToEndpoints.Send(NanoMessageBus.EnvelopeMessage,System.Uri[])">
+      <summary>
+            Sends the message provided to the recipients indicated.
+            </summary>
+      <param name="message">The message to be sent.</param>
+      <param name="recipients">The series of recipients interested in the message provided.</param>
+    </member>
+    <member name="T:NanoMessageBus.Logging.LogFactory">
+      <summary>
+            Provides the ability to get a new instance of the configured logger.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.Logging.LogFactory.BuildLogger">
+      <summary>
+            Gets or sets the log builder of the configured logger.  This should be invoked to return a new logging instance.
+            </summary>
+    </member>
+    <member name="T:NanoMessageBus.Logging.ILog">
+      <summary>
+            Indicates the ability to log diagnostic information.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Logging.ILog.Verbose(System.String,System.Object[])">
+      <summary>
+            Logs the most detailed level of diagnostic information.
+            </summary>
+      <param name="message">The diagnostic message to be logged.</param>
+      <param name="values">All parameter to be formatted into the message, if any.</param>
+    </member>
+    <member name="M:NanoMessageBus.Logging.ILog.Debug(System.String,System.Object[])">
+      <summary>
+            Logs the debug-level diagnostic information.
+            </summary>
+      <param name="message">The diagnostic message to be logged.</param>
+      <param name="values">All parameter to be formatted into the message, if any.</param>
+    </member>
+    <member name="M:NanoMessageBus.Logging.ILog.Info(System.String,System.Object[])">
+      <summary>
+            Logs important runtime diagnostic information.
+            </summary>
+      <param name="message">The diagnostic message to be logged.</param>
+      <param name="values">All parameter to be formatted into the message, if any.</param>
+    </member>
+    <member name="M:NanoMessageBus.Logging.ILog.Warn(System.String,System.Object[])">
+      <summary>
+            Logs diagnostic issues to which attention should be paid.
+            </summary>
+      <param name="message">The diagnostic message to be logged.</param>
+      <param name="values">All parameter to be formatted into the message, if any.</param>
+    </member>
+    <member name="M:NanoMessageBus.Logging.ILog.Error(System.String,System.Object[])">
+      <summary>
+            Logs application and infrastructure-level errors.
+            </summary>
+      <param name="message">The diagnostic message to be logged.</param>
+      <param name="values">All parameter to be formatted into the message, if any.</param>
+    </member>
+    <member name="M:NanoMessageBus.Logging.ILog.Fatal(System.String,System.Object[])">
+      <summary>
+            Logs fatal errors which result in process termination.
+            </summary>
+      <param name="message">The diagnostic message to be logged.</param>
+      <param name="values">All parameter to be formatted into the message, if any.</param>
+    </member>
+    <member name="T:NanoMessageBus.MessageSubscriber.UnsubscribeRequestMessage">
+      <summary>
+            Represents a request to unsubscribe from types of messages indicated.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.MessageSubscriber.UnsubscribeRequestMessage.MessageTypes">
+      <summary>
+            Gets or sets the message types for which a unsubscribe is requested.
+            </summary>
+    </member>
+    <member name="T:NanoMessageBus.MessageSubscriber.IUnsubscribeFromMessages">
+      <summary>
+            Indicates the ability to dispatch a request to unsubscribe.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.MessageSubscriber.IUnsubscribeFromMessages.Unsubscribe(System.Uri,System.Type[])">
+      <summary>
+            Dispatches a request to unsubscribe from the types of messages indicated.
+            </summary>
+      <param name="endpointAddress">The endpoint responsible for handling the unsubscribe request.</param>
+      <param name="messageTypes">The types of messages to be unsubscribed, if successful.</param>
+    </member>
+    <member name="T:NanoMessageBus.MessageSubscriber.ISubscribeToMessages">
+      <summary>
+            Indicates the ability to dispatch subscription requests.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.MessageSubscriber.ISubscribeToMessages.Subscribe(System.Uri,System.DateTime,System.Type[])">
+      <summary>
+            Dispatches subscription requests to the endpoint indicated for the message provided.
+            </summary>
+      <param name="endpointAddress">The endpoint to which the subscription request should be dispatched.</param>
+      <param name="expiration">The expiration of the subscription, if any, once accepted.</param>
+      <param name="messageTypes">The types of messages requested in the subscription.</param>
+    </member>
+    <member name="T:NanoMessageBus.MessageSubscriber.SubscriptionRequestMessage">
+      <summary>
+            Represents a request to subscribe to the types of messages indicated.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.MessageSubscriber.SubscriptionRequestMessage.MessageTypes">
+      <summary>
+            Gets or sets the message types for which a subscription is requested.
+            </summary>
+    </member>
+    <member name="P:NanoMessageBus.MessageSubscriber.SubscriptionRequestMessage.Expiration">
+      <summary>
+            Gets or sets the proposed expiration of the subscription, if accepted.
+            </summary>
+    </member>
+    <member name="T:NanoMessageBus.Serialization.ISerializeMessages">
+      <summary>
+            Indicates the ability to serialize and deserialize a message.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Serialization.ISerializeMessages.Serialize(System.IO.Stream,System.Object)">
+      <summary>
+            Serializes the message provided into the stream specified.
+            </summary>
+      <param name="output">The output stream into which all serialized bytes should be written.</param>
+      <param name="message">The message payload to be serialized.</param>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" />
+    </member>
+    <member name="M:NanoMessageBus.Serialization.ISerializeMessages.Deserialize(System.IO.Stream)">
+      <summary>
+            Deserializes the stream specified into an object graph.
+            </summary>
+      <param name="input">The stream from which all serialized bytes are to be read.</param>
+      <returns>If successful, returns a fully reconstituted message.</returns>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" />
+    </member>
+    <member name="T:NanoMessageBus.Serialization.ITransformMessages">
+      <summary>
+            Indicates the ability to transform a message into another type.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Serialization.ITransformMessages.Transform(System.Object)">
+      <summary>
+            Transforms the message into another type of message.
+            </summary>
+      <param name="message">The message to be transformed.</param>
+      <returns>Returns a new message based on the one provided.</returns>
+    </member>
+    <member name="T:NanoMessageBus.SubscriptionStorage.IStoreSubscriptions">
+      <summary>
+            Indicates the ability to store, modify, and retreive a list of subscriptions.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.IStoreSubscriptions.Subscribe(System.Uri,System.Collections.Generic.IEnumerable{System.String},System.DateTime)">
+      <summary>
+            Adds the endpoint address specified to the message types indicated.
+            </summary>
+      <param name="address">The endpoint address to be subscribed.</param>
+      <param name="messageTypes">The types of messages to add the subscription.</param>
+      <param name="expiration">The point at which the subscription for the message types expires.</param>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.IStoreSubscriptions.Unsubscribe(System.Uri,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>
+            Removes the set of message types from the endpoint address indicated.
+            </summary>
+      <param name="address">The endpoint address to be unsubscribed.</param>
+      <param name="messageTypes">The types of messages to remove from the subscription.</param>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.IStoreSubscriptions.GetSubscribers(System.Collections.Generic.IEnumerable{System.String})">
+      <summary>
+            Gets a collection of subscribers for the message types provided.
+            </summary>
+      <param name="messageTypes">The message types for which a collection of subscribers is requested.</param>
+      <returns>A collection of all subscribers for the message types indicated.</returns>
+    </member>
+    <member name="T:NanoMessageBus.SubscriptionStorage.SubscriptionStorageException">
+      <summary>
+            Represents an error during communication with the underlying subscription storage.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.SubscriptionStorageException.#ctor">
+      <summary>
+            Initializes a new instance of the SubscriptionStorageException class.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.SubscriptionStorageException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the SubscriptionStorageException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.SubscriptionStorageException.#ctor(System.String,System.Exception)">
+      <summary>
+            Initializes a new instance of the SubscriptionStorageException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+      <param name="inner">The exception that is the cause of the current exception.</param>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.SubscriptionStorageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes a new instance of the SubscriptionStorageException class.
+            </summary>
+      <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown.</param>
+      <param name="context">The StreamingContext that holds contextual information about the source or destination.</param>
+    </member>
+    <member name="T:NanoMessageBus.Transports.IReceiveMessages">
+      <summary>
+            Indicates the ability to receive messages.
+            </summary>
+      <remarks>
+            Object instances which implement this interface should be designed to be single threaded and
+            should not be shared between threads.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Transports.IReceiveMessages.Start">
+      <summary>
+            Starts the receipt of messages.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Transports.IReceiveMessages.Stop">
+      <summary>
+            Stops receiving new messages.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Transports.IReceiveMessages.Abort">
+      <summary>
+            Forcefully aborts the receipt of new messages and kills all workers currently processing messages.
+            </summary>
+    </member>
+    <member name="T:NanoMessageBus.Transports.ITransportMessages">
+      <summary>
+            Indicates the ability to transport inbound and outbound messages.
+            </summary>
+      <remarks>
+            Object instances which implement this interface must be designed to be multi-thread safe.
+            </remarks>
+    </member>
+    <member name="M:NanoMessageBus.Transports.ITransportMessages.StartListening">
+      <summary>
+            Starts the transport listening for new messages to receive.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Transports.ITransportMessages.StopListening">
+      <summary>
+            Stops the transport listening for new messages.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Transports.ITransportMessages.Send(NanoMessageBus.EnvelopeMessage,System.Uri[])">
+      <summary>
+            Sends the message provided to the set of receipients indicated.
+            </summary>
+      <param name="message">The message to be sent.</param>
+      <param name="recipients">The set of addresses for the interested recipients.</param>
+    </member>
+    <member name="T:NanoMessageBus.Transports.MessageTransportException">
+      <summary>
+            Represents an error during communication with the transport.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Transports.MessageTransportException.#ctor">
+      <summary>
+            Initializes a new instance of the MessageTransportException class.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.Transports.MessageTransportException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the MessageTransportException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:NanoMessageBus.Transports.MessageTransportException.#ctor(System.String,System.Exception)">
+      <summary>
+            Initializes a new instance of the MessageTransportException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+      <param name="inner">The exception that is the cause of the current exception.</param>
+    </member>
+    <member name="M:NanoMessageBus.Transports.MessageTransportException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes a new instance of the MessageTransportException class.
+            </summary>
+      <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown.</param>
+      <param name="context">The StreamingContext that holds contextual information about the source or destination.</param>
+    </member>
+  </members>
+</doc>
