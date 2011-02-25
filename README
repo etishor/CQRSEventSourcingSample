@@ -1,5 +1,5 @@
 ## Sample project demonstrating CQRS & Event Sourcing
-=================================================
+=====================================================
 
 The sample uses the following projects from Jonathan Oliver (https://github.com/joliver)
 
@@ -53,9 +53,15 @@ A short description of the projects in the sample:
 		- ASP.NET MVC3 application that demonstrates how to integrate the WriteSide & the ReadSide in an application.
 
 
-TODO
-====
+## TODO
+=======
 
 - Add more complex objects to the domain
 - Review transaction management on integration points
 - use ConfOrm for mapping the read model
+
+## Disaclaimer
+==============
+
+This sample's primary purpose is for me to gain experience with Autofac, NanoMessageBus, 
+EventStore and all the other projects involved.
