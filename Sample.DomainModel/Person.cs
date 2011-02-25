@@ -56,14 +56,14 @@ namespace Sample.DomainModel
         /// when the infrastructure loads the aggregate from the event stream.
         /// </summary>
         /// <param name="event">The @event.</param>
-        private void ApplyEvent(PersonCreated @event)
+        private void Apply(PersonCreated @event)
         {
             // in the apply event handlers we should only have property assignements
             this.name = new PersonName(@event.Name);
             this.currentAddress = new Address(@event.Street, @event.StreetNumber);
         }
 
-        private void ApplyEevent(PersonMoved @event)
+        private void Apply(PersonMoved @event)
         {
             this.currentAddress = new Address(@event.NewStreet, @event.NewNumber);
         }
