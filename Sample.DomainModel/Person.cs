@@ -17,6 +17,14 @@ namespace Sample.DomainModel
         private Address currentAddress;
 
         /// <summary>
+        /// Infrastructure constructor.
+        /// </summary>
+        private Person(Guid id)
+        {
+            this.Id = id;
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Person"/> class.
         /// </summary>
         /// <param name="id">The id.</param>
