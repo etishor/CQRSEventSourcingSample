@@ -1,4 +1,4 @@
-Sample project demonstrating CQRS & Event Sourcing
+## Sample project demonstrating CQRS & Event Sourcing
 =================================================
 
 The sample uses the following projects from Jonathan Oliver (https://github.com/joliver)
@@ -12,7 +12,7 @@ For more information on CQRS and Event Sourcing http://cqrsinfo.com/
 
 A short description of the projects in the sample:
 
-a. Write Side
+### Write Side
 
 	1. Sample.DomainModel
 		- the domain model for the sample
@@ -28,7 +28,7 @@ a. Write Side
 		- this is the actual instance of the service that needs to be running for the write side to process
 		commands.
 
-b. Read Side
+### Read Side
 
 	1. Sample.ReadModel
 		- the read model on witch queries are executed
@@ -44,7 +44,7 @@ b. Read Side
 		- infrastructure for wiring up the event handlers to NanoServiceBus
 		- this process needs to run for the read side to be updated.
 
-c. Infrastructure
+### Infrastructure
 	
 	1. Sample.Messages
 		- definitions for commands and events that are handled or published by the Domain Model
