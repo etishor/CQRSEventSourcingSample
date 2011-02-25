@@ -386,7 +386,7 @@
             Object instances which implement this interface must be designed to be multi-thread safe.
             </remarks>
     </member>
-    <member name="M:NanoMessageBus.MessageSubscriber.ISubscribeToMessages.Subscribe(System.Uri,System.DateTime,System.Type[])">
+    <member name="M:NanoMessageBus.MessageSubscriber.ISubscribeToMessages.Subscribe(System.Uri,System.Nullable{System.DateTime},System.Type[])">
       <summary>
             Dispatches subscription requests to the endpoint indicated for the message provided.
             </summary>
@@ -456,7 +456,7 @@
             Object instances which implement this interface must be designed to be multi-thread safe.
             </remarks>
     </member>
-    <member name="M:NanoMessageBus.SubscriptionStorage.IStoreSubscriptions.Subscribe(System.Uri,System.Collections.Generic.IEnumerable{System.String},System.DateTime)">
+    <member name="M:NanoMessageBus.SubscriptionStorage.IStoreSubscriptions.Subscribe(System.Uri,System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.DateTime})">
       <summary>
             Adds the endpoint address specified to the message types indicated.
             </summary>
