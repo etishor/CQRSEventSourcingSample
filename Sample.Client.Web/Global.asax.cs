@@ -26,9 +26,14 @@ namespace Sample.Client.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "LandingPage", // Route name
+                "{controller}",
+                new { controller = "Home", action = "Index" });
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}.aspx/{action}/{id}", // URL with parameters
-                new { controller = "Person", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
         }
