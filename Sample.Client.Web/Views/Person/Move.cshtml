@@ -1,22 +1,23 @@
 ﻿@model Sample.ReadModel.Person
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Move";
 }
 
-<h2>Create</h2>
+<h2>Move</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Person</legend>
 
+        @Html.HiddenFor(model => model.Id)
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
+            @Html.DisplayFor(model => model.Name)
         </div>
 
         <div class="editor-label">
@@ -36,7 +37,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
     </fieldset>
 }

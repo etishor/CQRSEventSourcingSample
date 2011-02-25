@@ -17,7 +17,7 @@ namespace Sample.Client.Web
             IWireup wireup = new WireupModule();
 
             wireup = wireup.Configure<LoggingWireup>()
-                        .UseOutputWindow();
+                        .UseLog4Net();
 
             wireup = wireup.Configure<TransportWireup>()
                         .ReceiveWith(1.Threads());

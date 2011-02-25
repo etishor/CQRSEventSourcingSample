@@ -46,5 +46,19 @@ namespace Sample.Client.Web.Controllers
             return this.RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Move(Guid id)
+        {
+            Person person = store.Items<Person>().Where(p => p.Id == id).Single();
+            return View(person);
+        }
+
+        [HttpPost]
+        public ActionResult Move(Person person)
+        {
+            MovePerson command = new MovePerson(person.Id, person.Street, person.StreetNumber);
+            bus.Send(command);
+            return this.RedirectToAction("Index");
+        }
     }
 }
