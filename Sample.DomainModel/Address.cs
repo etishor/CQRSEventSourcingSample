@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Sample.DomainModel
 {
+    /// <summary>
+    /// Value object representing an address.
+    /// </summary>
     public class Address
     {
         public Address(string street, string number)

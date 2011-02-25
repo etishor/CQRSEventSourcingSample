@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Sample.DomainModel
 {
+    /// <summary>
+    /// Value object representing the name of the person
+    /// </summary>
     public class PersonName
     {
         public PersonName(string name)

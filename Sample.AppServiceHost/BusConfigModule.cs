@@ -19,11 +19,10 @@ namespace Sample.AppServiceHost
             IWireup wireup = new WireupModule();
 
             wireup = wireup.Configure<LoggingWireup>()
-                        .UseOutputWindow()
                         .UseConsoleWindow();
 
             wireup = wireup.Configure<TransportWireup>()
-                        .ReceiveWith(1.Threads());
+                        .ReceiveWith(1.Threads()); // number of threads to use for handlers
 
             wireup = wireup.Configure<SerializationWireup>()
                         .JsonSerializer()

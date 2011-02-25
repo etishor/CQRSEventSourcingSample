@@ -9,11 +9,14 @@ namespace Sample.AppServiceHost
         static void Main(string[] args)
         {
             var builder = new ContainerBuilder();
+            // configure NanoServiceBus
             builder.RegisterModule(new BusConfigModule());
+            // configure the EventStore
             builder.RegisterModule(new StorageConfigModule());
-                        
+                       
             using (var container = builder.Build())
             {
+                // start waiting for commands.
                 Console.WriteLine("AppService Listening...");
                 var transport = container.Resolve<ITransportMessages>();
                 transport.StartListening();

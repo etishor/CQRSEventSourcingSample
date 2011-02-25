@@ -9,6 +9,11 @@ using Sample.DomainModel;
 
 namespace Sample.AppService
 {
+    /// <summary>
+    /// Command handler for the MovePerson command.
+    /// Finds the person aggregate by the Id and calls MoveToAddress() on it then saves
+    /// the AR in the repository.
+    /// </summary>
     public class MovePersonCommandHandler : IHandleMessages<MovePerson>
     {
         private readonly IRepository repository;

@@ -9,6 +9,10 @@ using Sample.DomainModel;
 
 namespace Sample.AppService
 {
+    /// <summary>
+    /// Command handler for the CreatePerson commant.
+    /// Will construct a new Person Aggregate Root and store it in the repository.
+    /// </summary>
     public class CreatePersonCommandHandler : IHandleMessages<CreatePerson>
     {
         private readonly IRepository repository;

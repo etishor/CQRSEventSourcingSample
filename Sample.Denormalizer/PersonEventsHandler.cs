@@ -10,10 +10,14 @@ using Sample.Messages;
 
 namespace Sample.Denormalizer
 {
+    /// <summary>
+    /// Event handler for the events published by a Person Aggregate from the Domain Model.
+    /// Updates the read model using the read storage.
+    /// </summary>
     public class PersonEventsHandler : 
         IHandleMessages<PersonCreated>,
         IHandleMessages<PersonMoved>,
-        IHandleMessages<IEvent>
+        IHandleMessages<IEvent> // ATM the IEvent is needed until a fix is implemented in NanoServiceBus
     {
         private readonly IUpdateStorage storage;
 
