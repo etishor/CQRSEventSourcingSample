@@ -1,4 +1,4 @@
-Sample project demonstrating CQRS & EventSourcing
+Sample project demonstrating CQRS & Event Sourcing
 =================================================
 
 The sample uses the following projects from Jonathan Oliver (https://github.com/joliver)
@@ -10,7 +10,7 @@ The sample uses the following projects from Jonathan Oliver (https://github.com/
 
 For more information on CQRS and Event Sourcing http://cqrsinfo.com/
 
-A short de scription of the projects in the sample:
+A short description of the projects in the sample:
 
 a. Write Side
 
@@ -25,7 +25,7 @@ a. Write Side
 
 	3. Sample.AppServiceHost
 		- infrastructure for wiring up the command handlers to NanoServiceBus 
-		- this is the actual instance of the service that needs to be runing for the write side to process
+		- this is the actual instance of the service that needs to be running for the write side to process
 		commands.
 
 b. Read Side
@@ -38,7 +38,7 @@ b. Read Side
 	2. Sample.Denormalizer
 		- the event handlers for the domain events that are published by the DomainModel on the WriteSide
 		- this handlers keep the read model in sync with the event stream
-		- a better name for it is wellcome
+		- a better name for it is welcome
 
 	3. Sample.DenormalizerHost
 		- infrastructure for wiring up the event handlers to NanoServiceBus
