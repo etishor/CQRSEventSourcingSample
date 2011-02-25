@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Sample.ReadModel.AddressChanges>
+
+@{
+    ViewBag.Title = "AddressChanges";
+}
+
+<h2>AddressChanges</h2>
+
+<table>
+    <tr>
+        <th></th>
+        <th>
+            OldStreet
+        </th>
+        <th>
+            OldNumber
+        </th>
+        <th>
+            NewStreet
+        </th>
+        <th>
+            NewNumber
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.OldStreet
+        </td>
+        <td>
+            @item.OldNumber
+        </td>
+        <td>
+            @item.NewStreet
+        </td>
+        <td>
+            @item.NewNumber
+        </td>
+    </tr>
+}
+
+</table>
+

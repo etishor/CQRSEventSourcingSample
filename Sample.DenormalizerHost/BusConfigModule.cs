@@ -46,15 +46,13 @@ namespace Sample.DenormalizerHost
                         .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(MovePerson))
                         .RegisterTransientMessage(typeof(MovePerson));
 
-            builder.RegisterType<PersonEventsHandler>()
-                .As<IHandleMessages<PersonCreated>>()
-                .As<IHandleMessages<PersonMoved>>()
-                .As<IHandleMessages<IEvent>>();
-
+            builder.RegisterType<PersonUpdater>();
+            builder.RegisterType<AddressChangesUpdater>();
+                        
             wireup = wireup.Configure<MessageHandlerWireup>()
-                 .AddHandler(c => c.Resolve<IHandleMessages<PersonCreated>>())
-                 .AddHandler(c => c.Resolve<IHandleMessages<PersonMoved>>())
-                 .AddHandler(c => c.Resolve<IHandleMessages<IEvent>>());
+                 .AddHandler<PersonCreated>( c => c.Resolve<PersonUpdater>())
+                 .AddHandler<PersonMoved>(c => c.Resolve<PersonUpdater>())
+                 .AddHandler(c => c.Resolve<AddressChangesUpdater>());
 
             wireup.Register(builder);
         }

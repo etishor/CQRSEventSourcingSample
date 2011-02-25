@@ -28,8 +28,7 @@ namespace Sample.DenormalizerHost
             builder.Register(c => factory.OpenSession())
                 .As<ISession>()
                 .InstancePerDependency()
-                .OnActivating(c => c.Instance.BeginTransaction())
-                .OnRelease(s => s.Transaction.Commit());
+                .OnActivated(c => c.Instance.BeginTransaction());
         }
 
         private static Configuration BuildConfiguration()
@@ -47,7 +46,6 @@ namespace Sample.DenormalizerHost
                 db.AutoCommentSql = true;
                 db.LogSqlInConsole = false;
                 db.LogFormatedSql = true;
-                db.TransactionFactory<AdoNetTransactionFactory>();
                 db.HqlToSqlSubstitutions = "true 1, false 0, yes 'Y', no 'N'";
             });
 

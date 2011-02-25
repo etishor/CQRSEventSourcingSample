@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Sample.ReadModel"
+                   namespace="Sample.ReadModel">
+
+  <class xmlns="urn:nhibernate-mapping-2.2" table="AddressChanges" name="AddressChanges" lazy="false">
+    <id name="Id">
+      <generator class="guid.comb"/>
+    </id>
+
+    <property name="OldStreet"/>
+    <property name="OldNumber"/>
+    <property name="NewStreet"/>
+    <property name="NewNumber"/>
+    
+  </class>
+</hibernate-mapping>

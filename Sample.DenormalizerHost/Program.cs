@@ -14,7 +14,7 @@ namespace Sample.DenormalizerHost
             var builder = new ContainerBuilder();
             builder.RegisterModule(new BusConfigModule());
             builder.RegisterModule(new StorageConfigModule());
-                        
+
             using (var container = builder.Build())
             {
                 Console.WriteLine("Denormalizer Listening...");
@@ -24,6 +24,7 @@ namespace Sample.DenormalizerHost
                 Console.WriteLine("Waiting...");
                 Console.ReadKey();
                 Console.WriteLine("Stopping...");
+                transport.StopListening();
             }
         }
          

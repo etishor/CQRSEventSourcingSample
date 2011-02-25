@@ -6,9 +6,8 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<p> @Html.ActionLink("Create New", "Create")</p>
+
 <table>
     <tr>
         <th></th>
@@ -42,3 +41,7 @@
 
 </table>
 
+<div>
+<p>@Html.ActionLink("View Address Changes", "AddressChanges")</p>
+<p>@Html.ActionLink("Refresh List", "Index") (welcome to the beautiful world of <a href="http://en.wikipedia.org/wiki/Eventual_consistency">eventual consistency</a>)</p>
+</div>

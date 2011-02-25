@@ -30,6 +30,12 @@ namespace Sample.Client.Web.Controllers
             return View(persons);
         }
 
+        public ActionResult AddressChanges()
+        {
+            IEnumerable<AddressChanges> changes = store.Items<AddressChanges>();
+            return View(changes);
+        }
+
         [HttpGet]
         public ActionResult Create()
         {

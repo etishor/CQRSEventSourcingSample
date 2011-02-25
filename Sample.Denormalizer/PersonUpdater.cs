@@ -14,14 +14,13 @@ namespace Sample.Denormalizer
     /// Event handler for the events published by a Person Aggregate from the Domain Model.
     /// Updates the read model using the read storage.
     /// </summary>
-    public class PersonEventsHandler : 
+    public class PersonUpdater : 
         IHandleMessages<PersonCreated>,
-        IHandleMessages<PersonMoved>,
-        IHandleMessages<IEvent> // ATM the IEvent is needed until a fix is implemented in NanoServiceBus
+        IHandleMessages<PersonMoved>
     {
         private readonly IUpdateStorage storage;
 
-        public PersonEventsHandler(IUpdateStorage storage)
+        public PersonUpdater(IUpdateStorage storage)
         {
             this.storage = storage;
         }
@@ -48,9 +47,5 @@ namespace Sample.Denormalizer
             storage.Update(person);
         }
 
-        public void Handle(IEvent message)
-        {
-            Console.WriteLine(message.Id.ToString());
-        }
     }
 }
