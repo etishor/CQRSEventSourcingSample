@@ -15,6 +15,7 @@ namespace Sample.DomainModel
     {
         private PersonName name;
         private Address currentAddress;
+        private bool isAlive;
 
         /// <summary>
         /// Infrastructure constructor.
@@ -43,6 +44,11 @@ namespace Sample.DomainModel
         /// <param name="newAddress">The new address.</param>
         public void MoveToAddress(Address newAddress)
         {
+            if (!this.isAlive)
+            {
+                throw new InvalidOperationException("Dead persons can't move.");
+            }
+
             if (newAddress == currentAddress)
             {
                 throw new InvalidOperationException("The new address must be different from the current one.");
@@ -51,6 +57,19 @@ namespace Sample.DomainModel
             RaiseEvent(new PersonMoved(Id, currentAddress.Street, currentAddress.Number, newAddress.Street, newAddress.Number));
         }
 
+        /// <summary>
+        /// Kills this person.
+        /// </summary>
+        public void Kill()
+        {
+            if (!this.isAlive)
+            {
+                throw new InvalidOperationException("Dead persons can't die again.");
+            }
+
+            RaiseEvent(new PersonDied(Id));
+        }
+        
         /// <summary>
         /// Applies the event. This method can be called when an aggregate method does RaiseEvent or 
         /// when the infrastructure loads the aggregate from the event stream.
@@ -61,11 +80,17 @@ namespace Sample.DomainModel
             // in the apply event handlers we should only have property assignements
             this.name = new PersonName(@event.Name);
             this.currentAddress = new Address(@event.Street, @event.StreetNumber);
+            this.isAlive = true;
         }
 
         private void Apply(PersonMoved @event)
         {
             this.currentAddress = new Address(@event.NewStreet, @event.NewNumber);
+        }
+
+        private void Apply(PersonDied @event)
+        {
+            this.isAlive = false;
         }
     }
 }

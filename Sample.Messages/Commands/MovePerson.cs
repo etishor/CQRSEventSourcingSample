@@ -14,8 +14,8 @@ namespace Sample.Messages.Commands
             this.StreetNumber = streetNumber;
         }
 
-        public Guid PersonId { get; private set; }
-        public string Street { get; private set; }
-        public string StreetNumber { get; private set; }
+        public Guid PersonId { get; set; }
+        public string Street { get; set; }
+        public string StreetNumber { get; set; }
     }
 }

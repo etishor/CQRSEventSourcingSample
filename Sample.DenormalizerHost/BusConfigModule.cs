@@ -34,17 +34,18 @@ namespace Sample.DenormalizerHost
                         .RetryAtLeast(3.Times());
 
             wireup = wireup.Configure<MessageSubscriberWireup>()
-                        .AddSubscription("msmq://./Sample.AppService", typeof(PersonCreated))
-                        .AddSubscription("msmq://./Sample.AppService", typeof(PersonMoved));
+                        .AddSubscription("msmq://./Sample.AppService",
+                        typeof(PersonCreated), typeof(PersonMoved), typeof(PersonDied));
 
-            wireup = wireup.Configure<MessageBusWireup>()
-                        .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(CreatePerson))
-                        .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(CreatePerson))
-                        .RegisterTransientMessage(typeof(CreatePerson))
 
-                        .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(MovePerson))
-                        .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(MovePerson))
-                        .RegisterTransientMessage(typeof(MovePerson));
+            //wireup = wireup.Configure<MessageBusWireup>()
+            //            .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(CreatePerson))
+            //            .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(CreatePerson))
+            //            .RegisterTransientMessage(typeof(CreatePerson))
+
+            //            .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(MovePerson))
+            //            .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(MovePerson))
+            //            .RegisterTransientMessage(typeof(MovePerson));
 
             builder.RegisterType<PersonUpdater>();
             builder.RegisterType<AddressChangesUpdater>();
@@ -52,6 +53,7 @@ namespace Sample.DenormalizerHost
             wireup = wireup.Configure<MessageHandlerWireup>()
                  .AddHandler<PersonCreated>( c => c.Resolve<PersonUpdater>())
                  .AddHandler<PersonMoved>(c => c.Resolve<PersonUpdater>())
+                 .AddHandler<PersonDied>(c => c.Resolve<PersonUpdater>())
                  .AddHandler(c => c.Resolve<AddressChangesUpdater>());
 
             wireup.Register(builder);

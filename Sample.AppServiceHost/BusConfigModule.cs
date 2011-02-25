@@ -47,10 +47,12 @@ namespace Sample.AppServiceHost
 
             builder.RegisterType<CreatePersonCommandHandler>();
             builder.RegisterType<MovePersonCommandHandler>();
+            builder.RegisterType<KillPersonCommandHandler>();
 
             wireup = wireup.Configure<MessageHandlerWireup>()
                         .AddHandler(c => c.Resolve<CreatePersonCommandHandler>())
-                        .AddHandler(c => c.Resolve<MovePersonCommandHandler>());
+                        .AddHandler(c => c.Resolve<MovePersonCommandHandler>())
+                        .AddHandler(c => c.Resolve<KillPersonCommandHandler>());
 
             wireup.Register(builder);
 

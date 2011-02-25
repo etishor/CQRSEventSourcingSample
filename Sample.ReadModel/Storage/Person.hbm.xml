@@ -13,4 +13,12 @@
     <property name="StreetNumber"/>
     
   </class>
+
+  <class xmlns="urn:nhibernate-mapping-2.2" table="deadperson" name="DeadPerson" lazy="false">
+    <id name="Id">
+      <generator class="assigned"/>
+    </id>
+
+    <property name="Name"/>
+  </class>
 </hibernate-mapping>

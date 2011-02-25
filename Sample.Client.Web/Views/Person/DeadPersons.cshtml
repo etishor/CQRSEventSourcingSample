@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Sample.ReadModel.DeadPerson>
+
+@{
+    ViewBag.Title = "DeadPersons";
+}
+
+<h2>DeadPersons</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Name
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+<p>@Html.ActionLink("View Alive Persons", "Index")</p>
+<p>@Html.ActionLink("View Address Changes", "AddressChanges")</p>
+<p>@Html.ActionLink("Refresh List", "DeadPersons") (welcome to the beautiful world of <a href="http://en.wikipedia.org/wiki/Eventual_consistency">eventual consistency</a>)</p>
+</div>

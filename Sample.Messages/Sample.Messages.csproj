@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CreatePerson.cs" />
+    <Compile Include="Commands\KillPerson.cs" />
     <Compile Include="Commands\MovePerson.cs" />
     <Compile Include="Events\PersonCreated.cs" />
+    <Compile Include="Events\PersonDied.cs" />
     <Compile Include="Events\PersonMoved.cs" />
     <Compile Include="IEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

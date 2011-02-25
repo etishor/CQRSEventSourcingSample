@@ -23,6 +23,7 @@ namespace Sample.Client.Web.Controllers
             this.bus = bus;
         }
         
+        [HttpGet]
         public ActionResult Index()
         {
             IEnumerable<Person> persons = store.Items<Person>();
@@ -30,6 +31,7 @@ namespace Sample.Client.Web.Controllers
             return View(persons);
         }
 
+        [HttpGet]
         public ActionResult AddressChanges()
         {
             IEnumerable<AddressChanges> changes = store.Items<AddressChanges>();
@@ -65,6 +67,25 @@ namespace Sample.Client.Web.Controllers
             MovePerson command = new MovePerson(person.Id, person.Street, person.StreetNumber);
             bus.Send(command);
             return this.RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Kill(Guid id) 
+        {
+            // it's not recomanded to delete/nuke data using GET requests.
+            // you should require the user to POST the id instead in real systems
+
+            KillPerson command = new KillPerson(id);
+            bus.Send(command);
+            return this.RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult DeadPersons()
+        {
+            IEnumerable<DeadPerson> persons = store.Items<DeadPerson>();
+
+            return View(persons);
         }
     }
 }

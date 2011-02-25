@@ -31,14 +31,17 @@ namespace Sample.Client.Web
                         .ForwardPoisonMessagesTo("msmq://./Sample.Error")
                         .RetryAtLeast(3.Times());
 
-            wireup = wireup.Configure<MessageBusWireup>()
-                        .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(CreatePerson))
-                        .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(CreatePerson))
-                        .RegisterTransientMessage(typeof(CreatePerson))
+            Type[] messageTypes = new Type[] {
+                typeof(CreatePerson),
+                typeof(MovePerson),
+                typeof(KillPerson)
+            };
 
-                        .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(MovePerson))
-                        .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(MovePerson))
-                        .RegisterTransientMessage(typeof(MovePerson));
+
+            wireup = wireup.Configure<MessageBusWireup>()
+                        .RegisterMessageEndpoint("msmq://./Sample.AppService", messageTypes )
+                        .RegisterMessageTimeToLive(TimeSpan.MaxValue, messageTypes)
+                        .RegisterTransientMessage(messageTypes);
 
             wireup.Register(builder);
 

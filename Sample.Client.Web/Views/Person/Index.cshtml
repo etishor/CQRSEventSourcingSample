@@ -26,6 +26,7 @@
     <tr>
         <td>
             @Html.ActionLink("Move", "Move", new { id = item.Id }) |
+            @Html.ActionLink("Kill", "Kill", new { id = item.Id }) |
         </td>
         <td>
             @item.Name
@@ -42,6 +43,7 @@
 </table>
 
 <div>
+<p>@Html.ActionLink("View Dead Persons", "DeadPersons")</p>
 <p>@Html.ActionLink("View Address Changes", "AddressChanges")</p>
 <p>@Html.ActionLink("Refresh List", "Index") (welcome to the beautiful world of <a href="http://en.wikipedia.org/wiki/Eventual_consistency">eventual consistency</a>)</p>
 </div>

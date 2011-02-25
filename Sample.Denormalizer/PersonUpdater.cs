@@ -16,7 +16,8 @@ namespace Sample.Denormalizer
     /// </summary>
     public class PersonUpdater : 
         IHandleMessages<PersonCreated>,
-        IHandleMessages<PersonMoved>
+        IHandleMessages<PersonMoved>,
+        IHandleMessages<PersonDied>
     {
         private readonly IUpdateStorage storage;
 
@@ -47,5 +48,18 @@ namespace Sample.Denormalizer
             storage.Update(person);
         }
 
+
+        public void Handle(PersonDied message)
+        {
+            Person person = storage.Items<Person>().Where(p => p.Id == message.Id).Single();
+            DeadPerson deadPerson = new DeadPerson
+            {
+                Id = person.Id,
+                Name = person.Name
+            };
+
+            storage.Remove(person);
+            storage.Add(deadPerson);
+        }
     }
 }
