@@ -45,14 +45,12 @@ namespace Sample.AppServiceHost
                         .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(MovePerson))
                         .RegisterTransientMessage(typeof(MovePerson));
 
-            builder.RegisterType<CreatePersonCommandHandler>()
-                .As<IHandleMessages<CreatePerson>>();
-            builder.RegisterType<MovePersonCommandHandler>()
-                .As<IHandleMessages<MovePerson>>();
+            builder.RegisterType<CreatePersonCommandHandler>();
+            builder.RegisterType<MovePersonCommandHandler>();
 
             wireup = wireup.Configure<MessageHandlerWireup>()
-                        .AddHandler(c => c.Resolve<IHandleMessages<CreatePerson>>())
-                        .AddHandler(c => c.Resolve<IHandleMessages<MovePerson>>());
+                        .AddHandler(c => c.Resolve<CreatePersonCommandHandler>())
+                        .AddHandler(c => c.Resolve<MovePersonCommandHandler>());
 
             wireup.Register(builder);
 
