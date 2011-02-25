@@ -49,6 +49,10 @@
     <Reference Include="EventStore.Serialization.Json">
       <HintPath>..\lib\EventStore\EventStore.Serialization.Json.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\log4net\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="NanoMessageBus">
       <HintPath>..\lib\NanoMessageBus\NanoMessageBus.dll</HintPath>
     </Reference>
@@ -62,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusConfigModule.cs" />
-    <Compile Include="EventStorePublisher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StorageConfigModule.cs" />

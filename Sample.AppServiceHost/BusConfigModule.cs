@@ -19,7 +19,7 @@ namespace Sample.AppServiceHost
             IWireup wireup = new WireupModule();
 
             wireup = wireup.Configure<LoggingWireup>()
-                        .UseConsoleWindow();
+                        .UseLog4Net();
 
             wireup = wireup.Configure<TransportWireup>()
                         .ReceiveWith(1.Threads()); // number of threads to use for handlers

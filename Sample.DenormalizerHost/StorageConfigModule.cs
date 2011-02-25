@@ -40,8 +40,8 @@ namespace Sample.DenormalizerHost
             cfg.Proxy(p => p.ProxyFactoryFactory<ProxyFactoryFactory>());
             cfg.DataBaseIntegration(db =>
             {
-                db.Dialect<NHibernate.Dialect.MySQL5Dialect>();
-                db.Driver<NHibernate.Driver.MySqlDataDriver>();
+                db.Dialect<NHibernate.Dialect.MsSql2008Dialect>();
+                db.Driver<NHibernate.Driver.SqlClientDriver>();
                 db.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
                 db.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ReadModel"].ConnectionString;
                 db.AutoCommentSql = true;

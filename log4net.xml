@@ -1,0 +1,40 @@
+﻿<log4net debug="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <root>
+    <level value="WARN" />
+    <appender-ref ref="Console" />
+  </root>
+
+  <logger name="Sample">
+    <level value="DEBUG" />
+  </logger>
+
+  <logger name="NanoMessageBus">
+    <level value="INFO" />
+  </logger>
+
+  <logger name="EventStore">
+    <level value="DEBUG" />
+  </logger>
+  
+  <appender name="Console" type="log4net.Appender.ColoredConsoleAppender">
+    <mapping>
+      <level value="INFO" />
+      <foreColor value="Green, HighIntensity" />
+    </mapping>
+    <mapping>
+      <level value="WARN" />
+      <foreColor value="Red, HighIntensity" />
+    </mapping>
+    <mapping>
+      <level value="ERROR" />
+      <foreColor value="Red, HighIntensity" />
+    </mapping>
+    <mapping>
+      <level value="FATAL" />
+      <foreColor value="Red, HighIntensity" />
+    </mapping>
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%-4timestamp [%thread] %-5level %logger %newline%message%newline" />
+    </layout>
+  </appender>
+</log4net>

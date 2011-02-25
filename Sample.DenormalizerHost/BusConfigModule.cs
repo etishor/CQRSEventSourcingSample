@@ -19,8 +19,7 @@ namespace Sample.DenormalizerHost
             IWireup wireup = new WireupModule();
 
             wireup = wireup.Configure<LoggingWireup>()
-                        .UseOutputWindow()
-                        .UseConsoleWindow();
+                    .UseLog4Net();
 
             wireup = wireup.Configure<TransportWireup>()
                         .ReceiveWith(1.Threads());

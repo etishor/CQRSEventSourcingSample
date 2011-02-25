@@ -41,7 +41,7 @@ namespace Sample.AppServiceHost
         {
             return new SqlPersistenceEngine(
                 new ConfigurationConnectionFactory("EventStore"),
-                new MySqlDialect(),
+                new MsSqlDialect(),
                 BuildSerializer());
         }
         private static ISerialize BuildSerializer()

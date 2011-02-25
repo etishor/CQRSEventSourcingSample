@@ -1,6 +1,7 @@
 ﻿using System;
 using Autofac;
 using NanoMessageBus.Transports;
+using System.IO;
 
 namespace Sample.AppServiceHost
 {
@@ -8,8 +9,10 @@ namespace Sample.AppServiceHost
     {
         static void Main(string[] args)
         {
+            log4net.Config.XmlConfigurator.ConfigureAndWatch( new FileInfo(@"../../../log4net.xml"));
+
             var builder = new ContainerBuilder();
-            // configure NanoServiceBus
+            // configure NanoMessageBus
             builder.RegisterModule(new BusConfigModule());
             // configure the EventStore
             builder.RegisterModule(new StorageConfigModule());
