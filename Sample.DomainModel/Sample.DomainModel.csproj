@@ -43,9 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="PersonName.cs" />
+    <Compile Include="People\Address.cs" />
+    <Compile Include="Funds\AccessionNumber.cs" />
+    <Compile Include="Funds\Document.cs" />
+    <Compile Include="Funds\DocumentShareClassAssociation.cs" />
+    <Compile Include="Funds\ShareClass.cs" />
+    <Compile Include="Funds\ShareClassType.cs" />
+    <Compile Include="Funds\Ticker.cs" />
+    <Compile Include="People\Person.cs" />
+    <Compile Include="People\PersonName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,8 @@ using Sample.Messages;
 using NanoMessageBus;
 using StorageAccess;
 using NanoMessageBus.Core;
+using Sample.ReadModel.People;
+using Sample.Messages.Commands.People;
 
 namespace Sample.Client.Web.Controllers
 {

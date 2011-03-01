@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressChangesUpdater.cs" />
-    <Compile Include="PersonUpdater.cs" />
+    <Compile Include="Funds\DocumentUpdater.cs" />
+    <Compile Include="Funds\ShareClassUpdater.cs" />
+    <Compile Include="People\AddressChangesUpdater.cs" />
+    <Compile Include="People\PersonUpdater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

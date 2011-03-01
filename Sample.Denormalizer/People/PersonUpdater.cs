@@ -7,8 +7,10 @@ using NanoMessageBus;
 using StorageAccess;
 using Sample.ReadModel;
 using Sample.Messages;
+using Sample.ReadModel.People;
+using Sample.Messages.Events.People;
 
-namespace Sample.Denormalizer
+namespace Sample.Denormalizer.People
 {
     /// <summary>
     /// Event handler for the events published by a Person Aggregate from the Domain Model.
@@ -30,7 +32,7 @@ namespace Sample.Denormalizer
         {
             Person person = new Person
             {
-                Id = message.Id,
+                Id = message.AggregateId,
                 Name = message.Name,
                 Street = message.Street,
                 StreetNumber = message.StreetNumber
@@ -40,7 +42,7 @@ namespace Sample.Denormalizer
 
         public void Handle(PersonMoved message)
         {
-            Person person = storage.Items<Person>().Where(p => p.Id == message.Id).Single();
+            Person person = storage.Items<Person>().Where(p => p.Id == message.AggregateId).Single();
 
             person.Street = message.NewStreet;
             person.StreetNumber = message.NewNumber;
@@ -51,7 +53,7 @@ namespace Sample.Denormalizer
 
         public void Handle(PersonDied message)
         {
-            Person person = storage.Items<Person>().Where(p => p.Id == message.Id).Single();
+            Person person = storage.Items<Person>().Where(p => p.Id == message.AggregateId).Single();
             DeadPerson deadPerson = new DeadPerson
             {
                 Id = person.Id,

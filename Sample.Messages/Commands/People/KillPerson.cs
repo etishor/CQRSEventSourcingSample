@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sample.Messages.Commands
+namespace Sample.Messages.Commands.People
 {
     public class KillPerson
     {

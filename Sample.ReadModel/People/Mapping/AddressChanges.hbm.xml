@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    assembly="Sample.ReadModel"
-                   namespace="Sample.ReadModel">
+                   namespace="Sample.ReadModel.People">
 
   <class xmlns="urn:nhibernate-mapping-2.2" table="AddressChanges" name="AddressChanges" lazy="false">
     <id name="Id">

@@ -9,6 +9,8 @@ using Sample.Messages.Commands;
 using NanoMessageBus;
 using CommonDomain.Persistence;
 using NanoMessageBus.Core;
+using Sample.AppService.People;
+using Sample.Messages.Commands.People;
 
 namespace Sample.AppServiceHost
 {

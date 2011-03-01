@@ -40,18 +40,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressChanges.cs" />
-    <Compile Include="DeadPerson.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="Funds\Document.cs" />
+    <Compile Include="Funds\ShareClass.cs" />
+    <Compile Include="People\AddressChanges.cs" />
+    <Compile Include="People\DeadPerson.cs" />
+    <Compile Include="People\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Storage\Person.hbm.xml">
+    <EmbeddedResource Include="People\Mapping\Person.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Storage\AddressChanges.hbm.xml">
+    <EmbeddedResource Include="People\Mapping\AddressChanges.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Funds\Mapping\Document.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Funds\Mapping\ShareClass.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

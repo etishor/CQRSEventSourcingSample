@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    assembly="Sample.ReadModel"
-                   namespace="Sample.ReadModel">
+                   namespace="Sample.ReadModel.People">
 
-  <class xmlns="urn:nhibernate-mapping-2.2" table="person" name="Person" lazy="false">
+  <class name="Person" lazy="false">
     <id name="Id">
       <generator class="assigned"/>
     </id>
@@ -14,7 +14,7 @@
     
   </class>
 
-  <class xmlns="urn:nhibernate-mapping-2.2" table="deadperson" name="DeadPerson" lazy="false">
+  <class name="DeadPerson" lazy="false">
     <id name="Id">
       <generator class="assigned"/>
     </id>

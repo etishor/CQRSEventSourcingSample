@@ -11,6 +11,7 @@ using StorageAccess;
 using NHibernate.ByteCode.LinFu;
 using Sample.ReadModel;
 using NHibernate.Transaction;
+using Sample.ReadModel.People;
 
 namespace Sample.DenormalizerHost
 {

@@ -9,6 +9,10 @@ using Sample.Denormalizer;
 using NanoMessageBus;
 using Sample.Messages.Commands;
 using Sample.Messages;
+using Sample.Denormalizer.People;
+using Sample.Messages.Events.People;
+using Sample.Messages.Events.Funds;
+using Sample.Denormalizer.Funds;
 
 namespace Sample.DenormalizerHost
 {
@@ -35,26 +39,24 @@ namespace Sample.DenormalizerHost
 
             wireup = wireup.Configure<MessageSubscriberWireup>()
                         .AddSubscription("msmq://./Sample.AppService",
-                        typeof(PersonCreated), typeof(PersonMoved), typeof(PersonDied));
-
-
-            //wireup = wireup.Configure<MessageBusWireup>()
-            //            .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(CreatePerson))
-            //            .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(CreatePerson))
-            //            .RegisterTransientMessage(typeof(CreatePerson))
-
-            //            .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(MovePerson))
-            //            .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(MovePerson))
-            //            .RegisterTransientMessage(typeof(MovePerson));
+                        typeof(PersonCreated), typeof(PersonMoved), typeof(PersonDied),
+                        typeof(DocumentCreated), typeof(ShareClassCreated), typeof(DocumentAssociatedWithShareclass));
 
             builder.RegisterType<PersonUpdater>();
             builder.RegisterType<AddressChangesUpdater>();
-                        
+
+            builder.RegisterType<DocumentUpdater>();
+            builder.RegisterType<ShareClassUpdater>();
+
             wireup = wireup.Configure<MessageHandlerWireup>()
-                 .AddHandler<PersonCreated>( c => c.Resolve<PersonUpdater>())
+                 .AddHandler<PersonCreated>(c => c.Resolve<PersonUpdater>())
                  .AddHandler<PersonMoved>(c => c.Resolve<PersonUpdater>())
                  .AddHandler<PersonDied>(c => c.Resolve<PersonUpdater>())
-                 .AddHandler(c => c.Resolve<AddressChangesUpdater>());
+                 .AddHandler<PersonMoved>(c => c.Resolve<AddressChangesUpdater>())
+                 .AddHandler<DocumentCreated>(c => c.Resolve<DocumentUpdater>())
+                 .AddHandler<DocumentAssociatedWithShareclass>(c => c.Resolve<DocumentUpdater>())
+                 .AddHandler<ShareClassCreated>(c => c.Resolve<ShareClassUpdater>());
+
 
             wireup.Register(builder);
         }

@@ -40,15 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CreatePerson.cs" />
-    <Compile Include="Commands\KillPerson.cs" />
-    <Compile Include="Commands\MovePerson.cs" />
-    <Compile Include="Events\PersonCreated.cs" />
-    <Compile Include="Events\PersonDied.cs" />
-    <Compile Include="Events\PersonMoved.cs" />
+    <Compile Include="Commands\Funds\CreateDocument.cs" />
+    <Compile Include="Commands\People\CreatePerson.cs" />
+    <Compile Include="Commands\People\KillPerson.cs" />
+    <Compile Include="Commands\People\MovePerson.cs" />
+    <Compile Include="Events\Funds\DocumentAssociatedWithShareclass.cs" />
+    <Compile Include="Events\Funds\DocumentCreated.cs" />
+    <Compile Include="Events\Funds\ShareClassCreated.cs" />
+    <Compile Include="Events\People\PersonCreated.cs" />
+    <Compile Include="Events\People\PersonDied.cs" />
+    <Compile Include="Events\People\PersonMoved.cs" />
     <Compile Include="IEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

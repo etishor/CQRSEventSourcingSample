@@ -8,6 +8,7 @@ using NHibernate.Tool.hbm2ddl;
 using Sample.ReadModel;
 using StorageAccess;
 using StorageAccess.NHibernate;
+using Sample.ReadModel.People;
 
 namespace Sample.Client.Web
 {

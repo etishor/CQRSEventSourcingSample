@@ -6,8 +6,10 @@ using Sample.Messages.Events;
 using NanoMessageBus;
 using StorageAccess;
 using Sample.ReadModel;
+using Sample.ReadModel.People;
+using Sample.Messages.Events.People;
 
-namespace Sample.Denormalizer
+namespace Sample.Denormalizer.People
 {
     public class AddressChangesUpdater: IHandleMessages<PersonMoved>
     {

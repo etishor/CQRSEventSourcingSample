@@ -5,8 +5,9 @@ using System.Text;
 using CommonDomain.Core;
 using Sample.Messages;
 using Sample.Messages.Events;
+using Sample.Messages.Events.People;
 
-namespace Sample.DomainModel
+namespace Sample.DomainModel.People
 {
     /// <summary>
     /// Sample aggregate root in the domain. 

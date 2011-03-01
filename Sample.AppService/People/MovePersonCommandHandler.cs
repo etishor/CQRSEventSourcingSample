@@ -6,8 +6,10 @@ using Sample.Messages.Commands;
 using NanoMessageBus;
 using CommonDomain.Persistence;
 using Sample.DomainModel;
+using Sample.DomainModel.People;
+using Sample.Messages.Commands.People;
 
-namespace Sample.AppService
+namespace Sample.AppService.People
 {
     /// <summary>
     /// Command handler for the MovePerson command.

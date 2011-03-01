@@ -7,6 +7,7 @@ using NanoMessageBus.Wireup;
 using Sample.Messages.Commands;
 using NanoMessageBus.Core;
 using Autofac.Integration.Mvc;
+using Sample.Messages.Commands.People;
 
 namespace Sample.Client.Web
 {

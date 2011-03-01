@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sample.Messages.Commands
+namespace Sample.Messages.Commands.People
 {
-    public class MovePerson
+    public class CreatePerson 
     {
-        public MovePerson(Guid personId, string street, string streetNumber)
+        public CreatePerson(Guid id, string name, string street, string streetNumber)
         {
-            this.PersonId = personId;
+            this.Id = id;
+            this.Name = name;
             this.Street = street;
             this.StreetNumber = streetNumber;
         }
 
-        public Guid PersonId { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
         public string Street { get; set; }
         public string StreetNumber { get; set; }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sample.ReadModel
+namespace Sample.ReadModel.People
 {
     public class AddressChanges
     {

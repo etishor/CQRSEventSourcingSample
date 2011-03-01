@@ -7,6 +7,9 @@ namespace Sample.Messages
 {
     public interface IEvent
     {
-        Guid Id { get; }
+        /// <summary>
+        /// The id of the aggregate root this event belongs to
+        /// </summary>
+        Guid AggregateId { get; }
     }
 }
