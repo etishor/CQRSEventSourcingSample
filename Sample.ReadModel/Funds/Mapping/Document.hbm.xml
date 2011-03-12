@@ -10,7 +10,7 @@
 
     <property name="AccessionNumber"/>
 
-    <bag name="ShareClasses" table="DocumentShareClass">
+    <bag name="ShareClasses" table="DocumentShareClass" lazy="false">
       <key column="DocumentId"/>
       <composite-element class="ShareClass">
         <property name="Id" column="ShareClassId"/>

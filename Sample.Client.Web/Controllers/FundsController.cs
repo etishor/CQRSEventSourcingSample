@@ -7,6 +7,7 @@ using StorageAccess;
 using NanoMessageBus;
 using Sample.ReadModel.Funds;
 using Sample.Messages.Commands.Funds;
+using Sample.Client.Web.Models;
 
 namespace Sample.Client.Web.Controllers
 {
@@ -74,5 +75,25 @@ namespace Sample.Client.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Document(Guid id)
+        {
+            DocumentViewModel model = new DocumentViewModel
+            {
+                Document = store.Items<Document>().Where(d => d.Id == id).Single(),
+                AllShares = store.Items<ShareClass>()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AssociateShareClass(Guid share, Guid document)
+        {
+            ShareClass shareClass = store.Items<ShareClass>().Where(s => s.Id == share).Single();
+            Document doc = store.Items<Document>().Where(d => d.Id == document).Single();
+
+            bus.Send(new AssociateShareClassToDocument(document, share, shareClass.Type));
+            return RedirectToAction("Document", new { id = document });   
+        }
     }
 }

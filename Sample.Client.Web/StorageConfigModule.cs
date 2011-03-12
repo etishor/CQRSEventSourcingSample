@@ -17,7 +17,7 @@ namespace Sample.Client.Web
         protected override void Load(ContainerBuilder builder)
         {
             // IQueryStorage registration
-            builder.RegisterType<NHibernateStatelessQueryStorage>().As<IQueryStorage>()
+            builder.RegisterType<NHibernateStorage>().As<IQueryStorage>()
                            .InstancePerHttpRequest();
 
             // configure and register nhibernate
@@ -30,8 +30,8 @@ namespace Sample.Client.Web
             ISessionFactory factory = config.BuildSessionFactory();
             builder.RegisterInstance(factory);
 
-            builder.Register(c => factory.OpenStatelessSession())
-                .As<IStatelessSession>()
+            builder.Register(c => factory.OpenSession())
+                .As<ISession>()
                 .InstancePerHttpRequest();
         }
         
