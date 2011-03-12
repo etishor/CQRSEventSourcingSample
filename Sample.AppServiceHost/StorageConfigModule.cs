@@ -61,15 +61,20 @@ namespace Sample.AppServiceHost
 
         private static void DispatchCommit(ILifetimeScope container, Commit commit)
         {
+            // TODO: the process might crash after the commit has been writen to the eventstore
+            // but before we have a chance to publish the messages to the bus. 
             using (var scope = container.BeginLifetimeScope())
             {
                 NanoMessageBus.IPublishMessages publisher = scope.Resolve<NanoMessageBus.IPublishMessages>();
 
                 publisher.Publish(commit.Events.Select(e => e.Body).ToArray());
 
-                var uow = scope.Resolve<IHandleUnitOfWork>();
-                uow.Complete();
-                uow.Dispose();
+                // need to complete and dispose the uow to do the actual publishing since 
+                // the IHandleUnitOfWork is registered as ExternalyOwned
+                using (IHandleUnitOfWork uow = scope.Resolve<IHandleUnitOfWork>())
+                {
+                    uow.Complete();
+                }
             }
         }
 

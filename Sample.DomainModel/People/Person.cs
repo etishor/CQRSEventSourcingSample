@@ -54,6 +54,8 @@ namespace Sample.DomainModel.People
         /// <param name="newAddress">The new address.</param>
         public void MoveToAddress(Address newAddress)
         {
+            // TODO: maybe publish an event signaling the error instead of throwing
+
             if (!this.isAlive)
             {
                 throw new InvalidOperationException("Dead persons can't move.");
