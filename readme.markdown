@@ -70,6 +70,10 @@ A short description of the projects in the sample:
 - Add more complex objects to the domain
 - Review transaction management on integration points
 - use ConfOrm for mapping the read model
+- Add error handeling/reporting
+- Create generic infrastructure to handle message/handler registration in nano message bus
+- Add js pooling sample to handle eventual consistency
+- Add more inter aggregate communication/operations
 
 ## Disaclaimer
 ==============
