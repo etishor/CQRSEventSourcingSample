@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Sample.ReadModel.Funds.ShareClass>
+
+@{
+    ViewBag.Title = "Shares";
+}
+
+<h2>Shares</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateShare")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Ticker
+        </th>
+        <th>
+            Type
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+        </td>
+        <td>
+            @item.Ticker
+        </td>
+        <td>
+            @item.Type
+        </td>
+    </tr>
+}
+
+</table>
+

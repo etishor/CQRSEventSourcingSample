@@ -21,13 +21,13 @@ namespace Sample.DomainModel.Funds
         public ShareClass(Guid id, Ticker ticker, ShareClassType type)
             :this(id)
         {
-            RaiseEvent(new ShareClassCreated(id, ticker.Symbol , type.Type));
+            RaiseEvent(new ShareClassCreated(id, ticker.Symbol , type.Name.ToString()));
         }
 
         private void Apply(ShareClassCreated @event)
         {
             this.ticker = new Ticker(@event.Ticker);
-            this.type = new ShareClassType(@event.Type);
+            this.type = ShareClassType.CreateFromString(@event.Type);
         }
     }
 }

@@ -7,11 +7,31 @@ namespace Sample.DomainModel.Funds
 {
     public class ShareClassType
     {
-        public ShareClassType(string type)
+        public enum TypeName
         {
-            this.Type = type;
+            Open,
+            Closed
+        };
+
+        public ShareClassType(TypeName type)
+        {
+            this.Name = type;
         }
 
-        public string Type { get; private set; }
+        public static ShareClassType CreateFromString(string typeName)
+        {
+            TypeName name = (TypeName)Enum.Parse(typeof(TypeName), typeName);
+            return new ShareClassType(name);
+        }
+
+        public TypeName Name { get; private set; }
+
+        public bool IsLinkable
+        {
+            get
+            {
+                return this.Name == TypeName.Open;
+            }
+        }
     }
 }

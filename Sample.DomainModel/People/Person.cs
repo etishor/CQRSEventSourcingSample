@@ -40,6 +40,15 @@ namespace Sample.DomainModel.People
         }
 
         /// <summary>
+        /// Factory method for creating person objects.
+        /// </summary>
+        public static Person CreatePerson(Guid id, string name, string street, string streetNumber)
+        {
+            // in some cases the creation process is best delegated to a factory method.
+            return new Person(id, new PersonName(name), new Address(street, streetNumber));
+        }
+
+        /// <summary>
         /// Moves this person to a new address.
         /// </summary>
         /// <param name="newAddress">The new address.</param>

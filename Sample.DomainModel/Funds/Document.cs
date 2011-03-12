@@ -26,7 +26,12 @@ namespace Sample.DomainModel.Funds
 
         public void AssociateWithShareClass(DocumentShareClassAssociation association)
         {
-            RaiseEvent(new DocumentAssociatedWithShareclass(this.Id, association.ShareClassId, association.ShareType.Type));
+            if (!association.ShareType.IsLinkable)
+            {
+                throw new InvalidOperationException("Only linkable share classes can be associated with documents");
+            }
+
+            RaiseEvent(new DocumentAssociatedWithShareclass(this.Id, association.ShareClassId, association.ShareType.Name.ToString()));
         }
 
         private void Apply(DocumentCreated @event)
@@ -36,7 +41,9 @@ namespace Sample.DomainModel.Funds
 
         private void Apply(DocumentAssociatedWithShareclass @event)
         {
-            this.shareClassAssociations.Add(new DocumentShareClassAssociation(@event.AggregateId, @event.ShareClassId, new ShareClassType(@event.ShareClassType)));
+            this.shareClassAssociations.Add(
+                new DocumentShareClassAssociation(@event.AggregateId, @event.ShareClassId,
+                    ShareClassType.CreateFromString(@event.ShareClassType)));
         }
     }
 }

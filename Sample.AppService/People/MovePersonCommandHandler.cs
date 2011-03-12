@@ -27,8 +27,15 @@ namespace Sample.AppService.People
 
         public void Handle(MovePerson command)
         {
+            // Command Handlers should usualy keep it simple Get AR, Call Method on AR, Save AR 
+
+            // get by id
             Person person = repository.GetById<Person>(command.PersonId, int.MaxValue);
+
+            // call method
             person.MoveToAddress(new Address(command.Street, command.StreetNumber));
+            
+            // save
             repository.Save(person, Guid.NewGuid(), null);
         }
     }

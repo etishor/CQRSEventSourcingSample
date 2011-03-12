@@ -26,8 +26,9 @@ namespace Sample.AppService.People
 
         public void Handle(CreatePerson command)
         {
-            Console.WriteLine(command.Name);
-            Person person = new Person(command.Id, new PersonName(command.Name), new Address(command.Street, command.StreetNumber));
+            // create a new instance of the person aggregate using the name and address from the command
+            Person person = Person.CreatePerson(command.Id, command.Name, command.Street, command.StreetNumber);
+
             repository.Save(person, Guid.NewGuid(), null);
         }
     }

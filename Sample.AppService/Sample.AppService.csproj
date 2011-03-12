@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateFactory.cs" />
+    <Compile Include="Funds\AssociateShareClassToDocumentCommandHandler.cs" />
     <Compile Include="Funds\CreateDocumentCommandHandler.cs" />
+    <Compile Include="Funds\CreateShareClassCommandHandler.cs" />
     <Compile Include="People\CreatePersonCommandHandler.cs" />
     <Compile Include="People\KillPersonCommandHandler.cs" />
     <Compile Include="People\MovePersonCommandHandler.cs" />

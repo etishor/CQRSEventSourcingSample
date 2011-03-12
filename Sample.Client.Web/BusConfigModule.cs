@@ -8,6 +8,7 @@ using Sample.Messages.Commands;
 using NanoMessageBus.Core;
 using Autofac.Integration.Mvc;
 using Sample.Messages.Commands.People;
+using Sample.Messages.Commands.Funds;
 
 namespace Sample.Client.Web
 {
@@ -35,7 +36,10 @@ namespace Sample.Client.Web
             Type[] messageTypes = new Type[] {
                 typeof(CreatePerson),
                 typeof(MovePerson),
-                typeof(KillPerson)
+                typeof(KillPerson),
+                typeof(CreateDocument),
+                typeof(CreateShareClass),
+                typeof(AssociateShareClassToDocument)
             };
 
 

@@ -11,6 +11,8 @@ using CommonDomain.Persistence;
 using NanoMessageBus.Core;
 using Sample.AppService.People;
 using Sample.Messages.Commands.People;
+using Sample.Messages.Commands.Funds;
+using Sample.AppService.Funds;
 
 namespace Sample.AppServiceHost
 {
@@ -38,23 +40,36 @@ namespace Sample.AppServiceHost
             wireup = wireup.Configure<SubscriptionStorageWireup>()
                         .ConnectTo("SubscriptionStorage");
 
-            wireup = wireup.Configure<MessageBusWireup>()
-                        .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(CreatePerson))
-                        .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(CreatePerson))
-                        .RegisterTransientMessage(typeof(CreatePerson))
+            Type[] commandTypes = new Type[] {
+                typeof(CreatePerson),
+                typeof(MovePerson),
+                typeof(KillPerson),
+                typeof(CreateDocument),
+                typeof(CreateShareClass),
+                typeof(AssociateShareClassToDocument)
+            };
 
-                        .RegisterMessageEndpoint("msmq://./Sample.AppService", typeof(MovePerson))
-                        .RegisterMessageTimeToLive(TimeSpan.MaxValue, typeof(MovePerson))
-                        .RegisterTransientMessage(typeof(MovePerson));
+            wireup = wireup.Configure<MessageBusWireup>()
+                        .RegisterMessageEndpoint("msmq://./Sample.AppService", commandTypes)
+                        .RegisterMessageTimeToLive(TimeSpan.MaxValue, commandTypes)
+                        .RegisterTransientMessage(commandTypes);
 
             builder.RegisterType<CreatePersonCommandHandler>();
             builder.RegisterType<MovePersonCommandHandler>();
             builder.RegisterType<KillPersonCommandHandler>();
 
+            builder.RegisterType<CreateDocumentCommandHandler>();
+            builder.RegisterType<CreateShareClassCommandHandler>();
+            builder.RegisterType<AssociateShareClassToDocumentCommandHandler>();
+
+
             wireup = wireup.Configure<MessageHandlerWireup>()
                         .AddHandler(c => c.Resolve<CreatePersonCommandHandler>())
                         .AddHandler(c => c.Resolve<MovePersonCommandHandler>())
-                        .AddHandler(c => c.Resolve<KillPersonCommandHandler>());
+                        .AddHandler(c => c.Resolve<KillPersonCommandHandler>())
+                        .AddHandler(c => c.Resolve<CreateDocumentCommandHandler>())
+                        .AddHandler(c => c.Resolve<CreateShareClassCommandHandler>())
+                        .AddHandler(c => c.Resolve<AssociateShareClassToDocumentCommandHandler>());
 
             wireup.Register(builder);
 

@@ -1,0 +1,39 @@
+﻿@model Sample.ReadModel.Funds.ShareClass
+
+@{
+    ViewBag.Title = "CreateShare";
+}
+
+<h2>CreateShare</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>ShareClass</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ticker)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Ticker)
+            @Html.ValidationMessageFor(model => model.Ticker)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Type)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Type)
+            @Html.ValidationMessageFor(model => model.Type)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

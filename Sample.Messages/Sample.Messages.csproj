@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Funds\AssociateShareClassToDocument.cs" />
     <Compile Include="Commands\Funds\CreateDocument.cs" />
+    <Compile Include="Commands\Funds\CreateShareClass.cs" />
     <Compile Include="Commands\People\CreatePerson.cs" />
     <Compile Include="Commands\People\KillPerson.cs" />
     <Compile Include="Commands\People\MovePerson.cs" />

@@ -1,0 +1,31 @@
+﻿@model Sample.ReadModel.Funds.Document
+
+@{
+    ViewBag.Title = "CreateDocument";
+}
+
+<h2>CreateDocument</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Document</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccessionNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AccessionNumber)
+            @Html.ValidationMessageFor(model => model.AccessionNumber)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
