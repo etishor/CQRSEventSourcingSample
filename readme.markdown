@@ -10,6 +10,17 @@ The sample uses the following projects from Jonathan Oliver (https://github.com/
 
 For more information on CQRS and Event Sourcing http://cqrsinfo.com/
 
+Description of the sample Domain Models implemented:
+
+### People
+Simple domain consisting of a Person Aggregate Root and two value objects ( PersonName and Address ).
+The model allows the creation of a person, the MovePerson operation witch changes the address and the kill-ing
+of a person.
+
+### Funds
+Sample domain with two ARs, Document and ShareClass and some VOs that demonstrates modeling many-to-many between aggregates.
+This domain is still work in progress.
+
 A short description of the projects in the sample:
 
 ### Write Side
