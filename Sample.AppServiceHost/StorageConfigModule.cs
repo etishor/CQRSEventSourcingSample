@@ -33,30 +33,15 @@ namespace Sample.AppServiceHost
 
         private static IStoreEvents BuildEventStore(ILifetimeScope container)
         {
-            var persistence = BuildPersistenceEngine();
-            var dispatcher = BuildDispatcher(persistence, container);
-            return new OptimisticEventStore(persistence, dispatcher);
-        }
-        private static IPersistStreams BuildPersistenceEngine()
-        {
-            return new SqlPersistenceEngine(
-                new ConfigurationConnectionFactory("EventStore"),
-                new MsSqlDialect(),
-                BuildSerializer());
-        }
-        private static ISerialize BuildSerializer()
-        {
-            var serializer = new JsonSerializer() as ISerialize;
-            serializer = new GzipSerializer(serializer);
-            return serializer;
-        }
-
-        private static IDispatchCommits BuildDispatcher(IPersistStreams persistence, ILifetimeScope container)
-        {
-            return new AsynchronousDispatcher(
-                new DelegateMessagePublisher(c => DispatchCommit(container, c)),
-                persistence,
-                OnDispatchError);
+            return EventStore.Wireup.Init()
+                .UsingSqlPersistence("EventStore")
+                    .InitializeDatabaseSchema()
+                .UsingCustomSerializer(new JsonSerializer())
+                    .Compress()
+                .UsingAsynchronousDispatcher()
+                    .PublishTo(new DelegateMessagePublisher( c => DispatchCommit(container,c)))
+                    .HandleExceptionsWith( OnDispatchError ) 
+                .Build();
         }
 
         private static void DispatchCommit(ILifetimeScope container, Commit commit)
@@ -80,7 +65,7 @@ namespace Sample.AppServiceHost
 
         private static void OnDispatchError(Commit commit, Exception exception)
         {
-
+            // TODO : handle error
         }
     }
 }
