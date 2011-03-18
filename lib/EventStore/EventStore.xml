@@ -34,6 +34,66 @@
       <param name="info">The SerializationInfo that holds the serialized object data of the exception being thrown.</param>
       <param name="context">The StreamingContext that contains contextual information about the source or destination.</param>
     </member>
+    <member name="T:EventStore.Persistence.StorageException">
+      <summary>
+            Represents a general failure of the storage engine or persistence infrastructure.
+            </summary>
+    </member>
+    <member name="M:EventStore.Persistence.StorageException.#ctor">
+      <summary>
+            Initializes a new instance of the StorageException class.
+            </summary>
+    </member>
+    <member name="M:EventStore.Persistence.StorageException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the StorageException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:EventStore.Persistence.StorageException.#ctor(System.String,System.Exception)">
+      <summary>
+            Initializes a new instance of the StorageException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+      <param name="innerException">The message that is the cause of the current exception.</param>
+    </member>
+    <member name="M:EventStore.Persistence.StorageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes a new instance of the StorageException class.
+            </summary>
+      <param name="info">The SerializationInfo that holds the serialized object data of the exception being thrown.</param>
+      <param name="context">The StreamingContext that contains contextual information about the source or destination.</param>
+    </member>
+    <member name="T:EventStore.Persistence.StorageUnavailableException">
+      <summary>
+            Indicates that the underlying persistence medium is unavailable or offline.
+            </summary>
+    </member>
+    <member name="M:EventStore.Persistence.StorageUnavailableException.#ctor">
+      <summary>
+            Initializes a new instance of the StorageUnavailableException class.
+            </summary>
+    </member>
+    <member name="M:EventStore.Persistence.StorageUnavailableException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the StorageUnavailableException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:EventStore.Persistence.StorageUnavailableException.#ctor(System.String,System.Exception)">
+      <summary>
+            Initializes a new instance of the StorageUnavailableException class.
+            </summary>
+      <param name="message">The message that describes the error.</param>
+      <param name="innerException">The message that is the cause of the current exception.</param>
+    </member>
+    <member name="M:EventStore.Persistence.StorageUnavailableException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes a new instance of the StorageUnavailableException class.
+            </summary>
+      <param name="info">The SerializationInfo that holds the serialized object data of the exception being thrown.</param>
+      <param name="context">The StreamingContext that contains contextual information about the source or destination.</param>
+    </member>
     <member name="T:EventStore.StreamNotFoundException">
       <summary>
             Represents an attempt to commit the same information more than once.
@@ -403,36 +463,6 @@
       <param name="maxThreshold">The maximum difference between the head and most recent snapshot revisions.</param>
       <returns>The streams for which the head and snapshot revisions differ by at least the threshold specified.</returns>
       <exception cref="T:EventStore.Persistence.StorageException" />
-    </member>
-    <member name="T:EventStore.Persistence.StorageException">
-      <summary>
-            Represents a general failure of the storage engine or persistence infrastructure.
-            </summary>
-    </member>
-    <member name="M:EventStore.Persistence.StorageException.#ctor">
-      <summary>
-            Initializes a new instance of the StorageException class.
-            </summary>
-    </member>
-    <member name="M:EventStore.Persistence.StorageException.#ctor(System.String)">
-      <summary>
-            Initializes a new instance of the StorageException class.
-            </summary>
-      <param name="message">The message that describes the error.</param>
-    </member>
-    <member name="M:EventStore.Persistence.StorageException.#ctor(System.String,System.Exception)">
-      <summary>
-            Initializes a new instance of the StorageException class.
-            </summary>
-      <param name="message">The message that describes the error.</param>
-      <param name="innerException">The message that is the cause of the current exception.</param>
-    </member>
-    <member name="M:EventStore.Persistence.StorageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>
-            Initializes a new instance of the StorageException class.
-            </summary>
-      <param name="info">The SerializationInfo that holds the serialized object data of the exception being thrown.</param>
-      <param name="context">The StreamingContext that contains contextual information about the source or destination.</param>
     </member>
     <member name="T:EventStore.Serialization.SerializationExtensions">
       <summary>
