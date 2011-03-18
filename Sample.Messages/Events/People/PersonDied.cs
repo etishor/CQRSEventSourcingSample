@@ -12,6 +12,6 @@ namespace Sample.Messages.Events.People
             this.AggregateId = id;
         }
 
-        public Guid AggregateId { get;private set; }
+        public Guid AggregateId { get;set; }
     }
 }

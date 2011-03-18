@@ -16,12 +16,12 @@ namespace Sample.Messages.Events.People
             this.NewNumber = newNumber;
         }
 
-        public Guid AggregateId { get; private set; }
+        public Guid AggregateId { get; set; }
 
-        public string OldStreet { get; private set; }
-        public string OldNumber { get; private set; }
+        public string OldStreet { get; set; }
+        public string OldNumber { get; set; }
 
-        public string NewStreet { get; private set; }
-        public string NewNumber { get; private set; }
+        public string NewStreet { get; set; }
+        public string NewNumber { get; set; }
     }
 }
