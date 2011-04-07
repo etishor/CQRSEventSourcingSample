@@ -7,6 +7,11 @@ namespace Sample.Messages.Events.People
 {
     public class PersonCreated : IEvent
     {
+        public readonly Guid AggregateId;
+        public readonly string Name;
+        public readonly string Street;
+        public readonly string StreetNumber;
+
         public PersonCreated(Guid id, string name, string street, string streetNumber)
         {
             this.AggregateId = id;
@@ -14,10 +19,5 @@ namespace Sample.Messages.Events.People
             this.Street = street;
             this.StreetNumber = streetNumber;
         }
-
-        public Guid AggregateId { get; set; }
-        public string Name { get; set; }
-        public string Street { get; set; }
-        public string StreetNumber { get; set; }
     }
 }

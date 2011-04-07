@@ -7,11 +7,11 @@ namespace Sample.Messages.Events.People
 {
     public class PersonDied : IEvent
     {
+        public readonly Guid AggregateId;
+
         public PersonDied(Guid id)
         {
             this.AggregateId = id;
         }
-
-        public Guid AggregateId { get;set; }
     }
 }
