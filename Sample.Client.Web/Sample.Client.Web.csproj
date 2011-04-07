@@ -14,6 +14,7 @@
     <AssemblyName>Sample.Client.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>true</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,12 +50,15 @@
     <Reference Include="NanoMessageBus">
       <HintPath>..\lib\NanoMessageBus\NanoMessageBus.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\StorageAccess\NHibernate\NHibernate.dll</HintPath>
+      <HintPath>..\lib\NHibernate\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.LinFu">
-      <HintPath>..\lib\StorageAccess\NHibernate\NHibernate.ByteCode.LinFu.dll</HintPath>
+      <HintPath>..\lib\NHibernate\LinFu\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
     <Reference Include="StorageAccess.NHibernate">
       <HintPath>..\lib\StorageAccess\NHibernate\StorageAccess.NHibernate.dll</HintPath>
@@ -185,12 +189,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3265</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:3265/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

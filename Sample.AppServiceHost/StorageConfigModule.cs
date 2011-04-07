@@ -36,11 +36,10 @@ namespace Sample.AppServiceHost
             return EventStore.Wireup.Init()
                 .UsingSqlPersistence("EventStore")
                     .InitializeDatabaseSchema()
-                .UsingCustomSerializer(new JsonSerializer())
-                    .Compress()
+                .UsingJsonSerialization()
+                .Compress()
                 .UsingAsynchronousDispatcher()
                     .PublishTo(new DelegateMessagePublisher( c => DispatchCommit(container,c)))
-                    .HandleExceptionsWith( OnDispatchError ) 
                 .Build();
         }
 

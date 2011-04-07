@@ -12,7 +12,7 @@ using Sample.Messages.Commands.People;
 namespace Sample.AppService.People
 {
     /// <summary>
-    /// Command handler for the CreatePerson commant.
+    /// Command handler for the CreatePerson command.
     /// Will construct a new Person Aggregate Root and store it in the repository.
     /// </summary>
     public class CreatePersonCommandHandler : IHandleMessages<CreatePerson>

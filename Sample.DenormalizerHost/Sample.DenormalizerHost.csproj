@@ -43,18 +43,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\log4net\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.3.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\StorageAccess\NHibernate\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="NanoMessageBus">
       <HintPath>..\lib\NanoMessageBus\NanoMessageBus.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\lib\StorageAccess\NHibernate\NHibernate.dll</HintPath>
+      <HintPath>..\lib\NHibernate\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.LinFu">
-      <HintPath>..\lib\StorageAccess\NHibernate\NHibernate.ByteCode.LinFu.dll</HintPath>
+      <HintPath>..\lib\NHibernate\LinFu\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
     <Reference Include="StorageAccess.NHibernate">
       <HintPath>..\lib\StorageAccess\NHibernate\StorageAccess.NHibernate.dll</HintPath>
