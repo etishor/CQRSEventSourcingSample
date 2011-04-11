@@ -80,9 +80,7 @@ namespace Sample.Tests
         {
             string name = string.Format("{0}.{1}", messge.Namespace.Replace(messge.Assembly.GetName().Name + ".", string.Empty), messge.Name);
             return new TestCase(name, () => TestType(messge));
-
-        }           
-    
+        }              
         
     }
 }

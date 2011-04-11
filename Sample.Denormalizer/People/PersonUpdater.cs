@@ -32,7 +32,7 @@ namespace Sample.Denormalizer.People
         {
             Person person = new Person
             {
-                Id = message.AggregateId,
+                Id = message.Id,
                 Name = message.Name,
                 Street = message.Street,
                 StreetNumber = message.StreetNumber
