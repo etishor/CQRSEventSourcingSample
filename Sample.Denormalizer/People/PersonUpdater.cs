@@ -42,7 +42,7 @@ namespace Sample.Denormalizer.People
 
         public void Handle(PersonMoved message)
         {
-            Person person = storage.Items<Person>().Where(p => p.Id == message.AggregateId).Single();
+            Person person = storage.Items<Person>().Where(p => p.Id == message.Id).Single();
 
             person.Street = message.NewStreet;
             person.StreetNumber = message.NewNumber;
@@ -53,7 +53,7 @@ namespace Sample.Denormalizer.People
 
         public void Handle(PersonDied message)
         {
-            Person person = storage.Items<Person>().Where(p => p.Id == message.AggregateId).Single();
+            Person person = storage.Items<Person>().Where(p => p.Id == message.Id).Single();
             DeadPerson deadPerson = new DeadPerson
             {
                 Id = person.Id,

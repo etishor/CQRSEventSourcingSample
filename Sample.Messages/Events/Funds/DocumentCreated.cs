@@ -7,12 +7,12 @@ namespace Sample.Messages.Events.Funds
 {
     public class DocumentCreated : IEvent
     {
-        public readonly Guid AggregateId;
+        public readonly Guid Id;
         public readonly string AccessionNumber;
 
         public DocumentCreated(Guid id, string accessionNumber)
         {
-            this.AggregateId = id;
+            this.Id = id;
             this.AccessionNumber = accessionNumber;
         }        
     }

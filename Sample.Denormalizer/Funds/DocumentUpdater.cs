@@ -24,7 +24,7 @@ namespace Sample.Denormalizer.Funds
         {
             Document document = new Document
             {
-                Id = message.AggregateId,
+                Id = message.Id,
                 AccessionNumber = message.AccessionNumber,
                 ShareClasses = new List<ShareClass>()
             };
@@ -33,7 +33,7 @@ namespace Sample.Denormalizer.Funds
 
         public void Handle(DocumentAssociatedWithShareclass message)
         {
-            Document document = storage.Items<Document>().Where(d => d.Id == message.AggregateId).Single();
+            Document document = storage.Items<Document>().Where(d => d.Id == message.DocumentId).Single();
 
             document.ShareClasses.Add(new ShareClass
             {

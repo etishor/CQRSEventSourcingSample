@@ -7,15 +7,15 @@ namespace Sample.Messages.Commands.Funds
 {
     public class AssociateShareClassToDocument
     {
-        public AssociateShareClassToDocument(Guid documentId, Guid shareClassId, string shareType)
+        public readonly Guid DocumentId;
+        public readonly Guid ShareClassId;
+        public readonly string ShareClassType;
+
+        public AssociateShareClassToDocument(Guid documentId, Guid shareClassId, string shareClassType)
         {
             this.DocumentId = documentId;
             this.ShareClassId = shareClassId;
-            this.ShareClassType = shareType;
+            this.ShareClassType = shareClassType;
         }
-                
-        public Guid DocumentId { get; set; }
-        public Guid ShareClassId { get; set; }
-        public string ShareClassType { get; set; }
     }
 }

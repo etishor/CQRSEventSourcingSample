@@ -7,13 +7,13 @@ namespace Sample.Messages.Events.Funds
 {
     public class DocumentAssociatedWithShareclass : IEvent
     {
-        public readonly Guid AggregateId;
+        public readonly Guid DocumentId;
         public readonly Guid ShareClassId;
         public readonly string ShareClassType;
 
         public DocumentAssociatedWithShareclass(Guid documentId, Guid shareClassId, string shareClassType)
         {
-            this.AggregateId = documentId;
+            this.DocumentId = documentId;
             this.ShareClassId = shareClassId;
             this.ShareClassType = shareClassType;
         }        

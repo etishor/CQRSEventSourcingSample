@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace Sample.Messages.Events.People
 {
@@ -12,9 +13,9 @@ namespace Sample.Messages.Events.People
         public readonly string Street;
         public readonly string StreetNumber;
 
-        public PersonCreated(Guid id, string name, string street, string streetNumber)
+        public PersonCreated(Guid aggregateId, string name, string street, string streetNumber)
         {
-            this.AggregateId = id;
+            this.AggregateId = aggregateId;
             this.Name = name;
             this.Street = street;
             this.StreetNumber = streetNumber;

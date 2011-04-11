@@ -22,7 +22,7 @@ namespace Sample.Denormalizer.Funds
         {
             ShareClass share = new ShareClass
             {
-                Id = message.AggregateId,
+                Id = message.Id,
                 Ticker = message.Ticker,
                 Type = message.Type
             };

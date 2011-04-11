@@ -42,7 +42,7 @@ namespace Sample.DomainModel.Funds
         private void Apply(DocumentAssociatedWithShareclass @event)
         {
             this.shareClassAssociations.Add(
-                new DocumentShareClassAssociation(@event.AggregateId, @event.ShareClassId,
+                new DocumentShareClassAssociation(@event.DocumentId, @event.ShareClassId,
                     ShareClassType.CreateFromString(@event.ShareClassType)));
         }
     }

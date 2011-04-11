@@ -61,10 +61,5 @@ namespace Sample.AppServiceHost
                 }
             }
         }
-
-        private static void OnDispatchError(Commit commit, Exception exception)
-        {
-            // TODO : handle error
-        }
     }
 }

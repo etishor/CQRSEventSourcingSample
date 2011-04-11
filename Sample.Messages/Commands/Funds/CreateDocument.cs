@@ -7,13 +7,13 @@ namespace Sample.Messages.Commands.Funds
 {
     public class CreateDocument
     {
+        public readonly Guid Id;
+        public readonly string AccessionNumber;     
+
         public CreateDocument(Guid id, string accessionNumber)
         {
             this.Id = id;
             this.AccessionNumber = accessionNumber;
-        }
-
-        public Guid Id { get; set; }
-        public string AccessionNumber { get; set; }        
+        }          
     }
 }

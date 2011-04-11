@@ -5,8 +5,13 @@ using System.Text;
 
 namespace Sample.Messages.Commands.People
 {
-    public class CreatePerson 
+    public class CreatePerson
     {
+        public readonly Guid Id;
+        public readonly string Name;
+        public readonly string Street;
+        public readonly string StreetNumber;
+
         public CreatePerson(Guid id, string name, string street, string streetNumber)
         {
             this.Id = id;
@@ -14,10 +19,5 @@ namespace Sample.Messages.Commands.People
             this.Street = street;
             this.StreetNumber = streetNumber;
         }
-
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Street { get; set; }
-        public string StreetNumber { get; set; }
     }
 }

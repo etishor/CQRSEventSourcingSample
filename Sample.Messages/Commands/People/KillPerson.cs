@@ -7,11 +7,11 @@ namespace Sample.Messages.Commands.People
 {
     public class KillPerson
     {
-        public KillPerson(Guid id)
-        {
-            this.VictimId = id;
-        }
+        public readonly Guid VictimId;
 
-        public Guid VictimId { get; set; }
+        public KillPerson(Guid victimId)
+        {
+            this.VictimId = victimId;
+        }
     }
 }

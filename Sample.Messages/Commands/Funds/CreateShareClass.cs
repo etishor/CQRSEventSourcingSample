@@ -7,15 +7,15 @@ namespace Sample.Messages.Commands.Funds
 {
     public class CreateShareClass
     {
+        public readonly Guid Id;
+        public readonly string Ticker;
+        public readonly string Type;
+
         public CreateShareClass(Guid id, string ticker, string type)
         {
             this.Id = id;
             this.Ticker = ticker;
             this.Type = type;                
-        }
-
-        public Guid Id { get; set; }
-        public string Ticker { get; set; }
-        public string Type { get; set; }
+        }       
     }
 }
