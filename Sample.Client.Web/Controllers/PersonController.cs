@@ -74,7 +74,7 @@ namespace Sample.Client.Web.Controllers
         [HttpGet]
         public ActionResult Kill(Guid id) 
         {
-            // it's not recomanded to delete/nuke data using GET requests.
+            // it's not recommended to delete/nuke data using GET requests.
             // you should require the user to POST the id instead in real systems
 
             KillPerson command = new KillPerson(id);

@@ -18,7 +18,7 @@ namespace Sample.AppServiceHost
             builder.RegisterModule(new StorageConfigModule());
                        
             using (var container = builder.Build())
-            {
+            {                
                 // start waiting for commands.
                 Console.WriteLine("AppService Listening...");
                 var transport = container.Resolve<ITransportMessages>();

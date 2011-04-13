@@ -35,7 +35,7 @@ namespace Sample.AppServiceHost
         {
             return EventStore.Wireup.Init()
                 .UsingSqlPersistence("EventStore")
-                    .InitializeDatabaseSchema()
+                    .InitializeStorageEngine()
                 .UsingJsonSerialization()
                 .Compress()
                 .UsingAsynchronousDispatcher()
@@ -44,9 +44,7 @@ namespace Sample.AppServiceHost
         }
 
         private static void DispatchCommit(ILifetimeScope container, Commit commit)
-        {
-            // TODO: the process might crash after the commit has been writen to the eventstore
-            // but before we have a chance to publish the messages to the bus. 
+        {            
             using (var scope = container.BeginLifetimeScope())
             {
                 NanoMessageBus.IPublishMessages publisher = scope.Resolve<NanoMessageBus.IPublishMessages>();
