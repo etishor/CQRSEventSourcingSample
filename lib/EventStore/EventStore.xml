@@ -305,6 +305,15 @@
       <exception cref="T:EventStore.Persistence.StorageException" />
       <exception cref="T:EventStore.Persistence.StorageUnavailableException" />
     </member>
+    <member name="M:EventStore.IAccessSnapshots.GetStreamsToSnapshot(System.Int32)">
+      <summary>
+            Gets identifiers for all streams whose head and last snapshot revisions differ by at least the threshold specified.
+            </summary>
+      <param name="maxThreshold">The maximum difference between the head and most recent snapshot revisions.</param>
+      <returns>The streams for which the head and snapshot revisions differ by at least the threshold specified.</returns>
+      <exception cref="T:EventStore.Persistence.StorageException" />
+      <exception cref="T:EventStore.Persistence.StorageUnavailableException" />
+    </member>
     <member name="T:EventStore.IStoreEvents">
       <summary>
             Indicates the ability to store and retreive a stream of events.
@@ -538,15 +547,6 @@
             Marks the commit specified as dispatched.
             </summary>
       <param name="commit">The commit to be marked as dispatched.</param>
-      <exception cref="T:EventStore.Persistence.StorageException" />
-      <exception cref="T:EventStore.Persistence.StorageUnavailableException" />
-    </member>
-    <member name="M:EventStore.Persistence.IPersistStreams.GetStreamsToSnapshot(System.Int32)">
-      <summary>
-            Gets identifiers for all streams whose head and last snapshot revisions differ by at least the threshold specified.
-            </summary>
-      <param name="maxThreshold">The maximum difference between the head and most recent snapshot revisions.</param>
-      <returns>The streams for which the head and snapshot revisions differ by at least the threshold specified.</returns>
       <exception cref="T:EventStore.Persistence.StorageException" />
       <exception cref="T:EventStore.Persistence.StorageUnavailableException" />
     </member>
