@@ -478,6 +478,35 @@
       <param name="messageTypes">The message types for which a collection of subscribers is requested.</param>
       <returns>A collection of all subscribers for the message types indicated.</returns>
     </member>
+    <member name="T:NanoMessageBus.SubscriptionStorage.InMemorySubscriptionStorage">
+      <summary>
+            An in-memory subscription storage. Useful for debugging purposes.
+            </summary>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.InMemorySubscriptionStorage.Subscribe(System.Uri,System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.DateTime})">
+      <summary>
+            Adds the endpoint address specified to the message types indicated.
+            </summary>
+      <param name="address">The endpoint address to be subscribed.</param>
+      <param name="messageTypes">The types of messages to add the subscription.</param>
+      <param name="expiration">The point at which the subscription for the message types expires.</param>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.InMemorySubscriptionStorage.Unsubscribe(System.Uri,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>
+            Removes the set of message types from the endpoint address indicated.
+            </summary>
+      <param name="address">The endpoint address to be unsubscribed.</param>
+      <param name="messageTypes">The types of messages to remove from the subscription.</param>
+    </member>
+    <member name="M:NanoMessageBus.SubscriptionStorage.InMemorySubscriptionStorage.GetSubscribers(System.Collections.Generic.IEnumerable{System.String})">
+      <summary>
+            Gets a collection of subscribers for the message types provided.
+            </summary>
+      <param name="messageTypes">The message types for which a collection of subscribers is requested.</param>
+      <returns>
+            A collection of all subscribers for the message types indicated.
+            </returns>
+    </member>
     <member name="T:NanoMessageBus.SubscriptionStorage.SubscriptionStorageException">
       <summary>
             Represents an error during communication with the underlying subscription storage.
