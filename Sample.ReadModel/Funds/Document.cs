@@ -5,11 +5,12 @@ using System.Text;
 
 namespace Sample.ReadModel.Funds
 {
-    public class Document
+    public class Document : ReadModelEntity
     {
-        public Guid Id { get; set; }
-        public string AccessionNumber { get; set; }
+        public Document() { }// needed for asp.net model binder
+        public Document(Guid id) : base(id) { }
 
+        public string AccessionNumber { get; set; }
         public ICollection<ShareClass> ShareClasses { get; set; }
     }
 }

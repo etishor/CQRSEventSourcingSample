@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Commands.Funds
 {
-    public class CreateShareClass
+    public sealed class CreateShareClass
     {
         public readonly Guid Id;
         public readonly string Ticker;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Commands.Funds
 {
-    public class CreateDocument
+    public sealed class CreateDocument
     {
         public readonly Guid Id;
         public readonly string AccessionNumber;     

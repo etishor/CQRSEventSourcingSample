@@ -8,6 +8,7 @@ using NanoMessageBus;
 using Sample.ReadModel.Funds;
 using Sample.Messages.Commands.Funds;
 using Sample.Client.Web.Models;
+using Sample.ReadModel;
 
 namespace Sample.Client.Web.Controllers
 {
@@ -45,7 +46,7 @@ namespace Sample.Client.Web.Controllers
         [HttpGet]
         public ActionResult CreateDocument()
         {
-            return View( new Document());
+            return View( new Document(Guid.NewGuid()));
         }
 
         [HttpPost]
@@ -59,7 +60,7 @@ namespace Sample.Client.Web.Controllers
         [HttpGet]
         public ActionResult CreateShare()
         {
-            return View(new ShareClass());
+            return View(new ShareClass(Guid.NewGuid()));
         }
 
         [HttpPost]
@@ -80,7 +81,7 @@ namespace Sample.Client.Web.Controllers
         {
             DocumentViewModel model = new DocumentViewModel
             {
-                Document = store.Items<Document>().Where(d => d.Id == id).Single(),
+                Document = store.Load<Document>(id),
                 AllShares = store.Items<ShareClass>()
             };
             return View(model);
@@ -89,8 +90,8 @@ namespace Sample.Client.Web.Controllers
         [HttpPost]
         public ActionResult AssociateShareClass(Guid share, Guid document)
         {
-            ShareClass shareClass = store.Items<ShareClass>().Where(s => s.Id == share).Single();
-            Document doc = store.Items<Document>().Where(d => d.Id == document).Single();
+            ShareClass shareClass = store.Load<ShareClass>(share);
+            Document doc = store.Load<Document>(document);
 
             bus.Send(new AssociateShareClassToDocument(document, share, shareClass.Type));
             return RedirectToAction("Document", new { id = document });   

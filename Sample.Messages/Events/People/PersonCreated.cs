@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Sample.Messages.Events.People
 {
-    public class PersonCreated : IEvent
+    public sealed class PersonCreated : IEvent
     {
         public readonly Guid Id;
         public readonly string Name;

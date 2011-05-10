@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Sample.ReadModel.People
 {
-    public class AddressChanges
+    public class AddressChanges : ReadModelEntity
     {
-        // for nhibernate
-        protected Guid Id { get; set; }
+        public AddressChanges(Guid id) : base(id) { }
+                
         public string OldStreet { get; set; }
         public string OldNumber { get; set; }
         public string NewStreet { get; set; }

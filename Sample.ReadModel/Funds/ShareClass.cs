@@ -5,9 +5,12 @@ using System.Text;
 
 namespace Sample.ReadModel.Funds
 {
-    public class ShareClass
+    public class ShareClass : ReadModelEntity
     {
-        public Guid Id { get; set; }
+        public ShareClass() { } // needed for asp.net model binder
+
+        public ShareClass(Guid id) : base(id) { }
+
         public string Ticker { get; set; }
         public string Type { get; set; }
     }

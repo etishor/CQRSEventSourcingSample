@@ -43,15 +43,14 @@ namespace Sample.Client.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            Person person = new Person();
+            Person person = new Person(Guid.NewGuid());
             return View(person);
         }
 
         [HttpPost]
         public ActionResult Create(Person person)
         {
-            person.Id = Guid.NewGuid();
-            CreatePerson command = new CreatePerson(person.Id, person.Name, person.Street, person.StreetNumber);
+            CreatePerson command = new CreatePerson(Guid.NewGuid(), person.Name, person.Street, person.StreetNumber);
             bus.Send(command);
             return this.RedirectToAction("Index");
         }
@@ -59,14 +58,14 @@ namespace Sample.Client.Web.Controllers
         [HttpGet]
         public ActionResult Move(Guid id)
         {
-            Person person = store.Items<Person>().Where(p => p.Id == id).Single();
+            Person person = store.Load<Person>(id);
             return View(person);
         }
 
         [HttpPost]
         public ActionResult Move(Person person)
         {
-            MovePerson command = new MovePerson(person.Id, person.Street, person.StreetNumber);
+            MovePerson command = new MovePerson(person.AggregateId, person.Street, person.StreetNumber);
             bus.Send(command);
             return this.RedirectToAction("Index");
         }

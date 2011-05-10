@@ -6,6 +6,7 @@ using Sample.Messages.Events.Funds;
 using NanoMessageBus;
 using StorageAccess;
 using Sample.ReadModel.Funds;
+using Sample.ReadModel;
 
 namespace Sample.Denormalizer.Funds
 {
@@ -22,9 +23,8 @@ namespace Sample.Denormalizer.Funds
 
         public void Handle(DocumentCreated message)
         {
-            Document document = new Document
+            Document document = new Document(message.Id)
             {
-                Id = message.Id,
                 AccessionNumber = message.AccessionNumber,
                 ShareClasses = new List<ShareClass>()
             };
@@ -33,14 +33,13 @@ namespace Sample.Denormalizer.Funds
 
         public void Handle(DocumentAssociatedWithShareclass message)
         {
-            Document document = storage.Items<Document>().Where(d => d.Id == message.DocumentId).Single();
+            Document document = storage.Load<Document>(message.DocumentId);
 
-            document.ShareClasses.Add(new ShareClass
+            document.ShareClasses.Add(new ShareClass(message.ShareClassId)
             {
-                Id = message.ShareClassId,
                 Type = message.ShareClassType,
                 // TODO: not sure if this is the best option
-                Ticker = storage.Items<ShareClass>().Where(s => s.Id == message.ShareClassId).Select(s => s.Ticker).Single()
+                Ticker = storage.Load<ShareClass>(message.ShareClassId).Ticker
             });
 
             storage.Update(document);

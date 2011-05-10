@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Commands.Funds
 {
-    public class AssociateShareClassToDocument
+    public sealed class AssociateShareClassToDocument
     {
         public readonly Guid DocumentId;
         public readonly Guid ShareClassId;

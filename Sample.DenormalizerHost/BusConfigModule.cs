@@ -29,8 +29,8 @@ namespace Sample.DenormalizerHost
                         .ReceiveWith(1.Threads());
 
             wireup = wireup.Configure<SerializationWireup>()
-                        .JsonSerializer()
-                        .CompressMessages();
+                        .WithJsonSerializer()
+                            .CompressMessages();
 
             wireup = wireup.Configure<EndpointWireup>()
                         .ListenOn("msmq://./Sample.Denormalizer")

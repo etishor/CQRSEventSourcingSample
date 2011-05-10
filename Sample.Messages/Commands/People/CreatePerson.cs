@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Commands.People
 {
-    public class CreatePerson
+    public sealed class CreatePerson
     {
         public readonly Guid Id;
         public readonly string Name;

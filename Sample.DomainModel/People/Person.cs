@@ -23,6 +23,11 @@ namespace Sample.DomainModel.People
         /// </summary>
         private Person(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentException("id");
+            }
+
             this.Id = id;
         }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Events.Funds
 {
-    public class DocumentCreated : IEvent
+    public sealed class DocumentCreated : IEvent
     {
         public readonly Guid Id;
         public readonly string AccessionNumber;

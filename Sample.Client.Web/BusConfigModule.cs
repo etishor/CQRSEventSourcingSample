@@ -6,6 +6,7 @@ using Autofac;
 using NanoMessageBus.Wireup;
 using Sample.Messages.Commands;
 using NanoMessageBus.Core;
+using NanoMessageBus;
 using Autofac.Integration.Mvc;
 using Sample.Messages.Commands.People;
 using Sample.Messages.Commands.Funds;
@@ -25,7 +26,7 @@ namespace Sample.Client.Web
                         .ReceiveWith(1.Threads());
 
             wireup = wireup.Configure<SerializationWireup>()
-                        .JsonSerializer()
+                        .WithJsonSerializer()
                         .CompressMessages();
 
             wireup = wireup.Configure<EndpointWireup>()

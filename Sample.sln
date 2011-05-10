@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Tests", "Sample.Tests\Sample.Tests.csproj", "{EF3686FB-F1A4-4EFB-9038-CB7E1B954F23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.ReadModel.NHibernatePersistence", "Sample.ReadModel.NHibernatePersistence\Sample.ReadModel.NHibernatePersistence.csproj", "{4991E942-B9A8-466A-A6A3-C881BFE3139E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,16 @@ Global
 		{EF3686FB-F1A4-4EFB-9038-CB7E1B954F23}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EF3686FB-F1A4-4EFB-9038-CB7E1B954F23}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EF3686FB-F1A4-4EFB-9038-CB7E1B954F23}.Release|x86.ActiveCfg = Release|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,5 +150,6 @@ Global
 		{B6D748C5-8E02-49E7-AF1F-C161AF52EE60} = {4F9E427E-8C96-493A-A612-043CB28B08A5}
 		{7457A692-33BC-4BD3-B4D9-3B3D980A57A5} = {51FA97B5-859F-4193-A757-3FBEFC1AC685}
 		{4A556F82-6D67-43A4-902C-884EB52AB350} = {51FA97B5-859F-4193-A757-3FBEFC1AC685}
+		{4991E942-B9A8-466A-A6A3-C881BFE3139E} = {51FA97B5-859F-4193-A757-3FBEFC1AC685}
 	EndGlobalSection
 EndGlobal

@@ -20,9 +20,8 @@ namespace Sample.Denormalizer.Funds
 
         public void Handle(ShareClassCreated message)
         {
-            ShareClass share = new ShareClass
+            ShareClass share = new ShareClass(message.Id)
             {
-                Id = message.Id,
                 Ticker = message.Ticker,
                 Type = message.Type
             };

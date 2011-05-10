@@ -46,8 +46,9 @@
     <Reference Include="EventStore">
       <HintPath>..\lib\EventStore\EventStore.dll</HintPath>
     </Reference>
-    <Reference Include="EventStore.Serialization.Json">
-      <HintPath>..\lib\EventStore\EventStore.Serialization.Json.dll</HintPath>
+    <Reference Include="EventStore.Persistence.RavenPersistence, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7735eb81c0bd9948, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\EventStore\persistence\raven\EventStore.Persistence.RavenPersistence.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -56,8 +57,18 @@
     <Reference Include="NanoMessageBus">
       <HintPath>..\lib\NanoMessageBus\NanoMessageBus.dll</HintPath>
     </Reference>
+    <Reference Include="NanoMessageBus.Serialization.Json">
+      <HintPath>..\lib\NanoMessageBus\Serialization\Json.Net\NanoMessageBus.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NanoMessageBus.SubscriptionStorage.Raven, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3b174769a3d5b5de, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NanoMessageBus\SubscriptionStorage\Raven\NanoMessageBus.SubscriptionStorage.Raven.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\lib\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\lib\RavenDB\.NET 4.0\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

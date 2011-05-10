@@ -9,9 +9,11 @@ namespace Sample.ReadModel.People
     /// Read Model object for displaying a Person.
     /// Denormalized form of the Aggregate in the DomainModel.
     /// </summary>
-    public class Person
+    public class Person : ReadModelEntity
     {
-        public Guid Id { get; set; }
+        public Person() { }// needed for asp.net model binder
+        public Person(Guid id) : base(id) { }
+
         public string Name { get; set; }
         public string Street { get; set; }
         public string StreetNumber { get; set; }

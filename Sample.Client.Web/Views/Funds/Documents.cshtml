@@ -20,7 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink("Details", "Document", new { id=item.Id })
+            @Html.ActionLink("Details", "Document", new { id=item.AggregateId })
         </td>
         <td>
             @item.AccessionNumber

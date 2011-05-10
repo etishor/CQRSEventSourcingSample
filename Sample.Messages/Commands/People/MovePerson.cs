@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Commands.People
 {
-    public class MovePerson
+    public sealed class MovePerson
     {
         public readonly Guid PersonId;
         public readonly string Street;

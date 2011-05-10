@@ -24,11 +24,11 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Associate Share</legend>
-        <input type="hidden" value="@Model.Document.Id" name="document" />
+        <input type="hidden" value="@Model.Document.AggregateId" name="document" />
         <select name="share">
             @foreach (var share in Model.AllShares)
             {
-                <option value="@share.Id">@share.Ticker</option>
+                <option value="@share.AggregateId">@share.Ticker</option>
             }
         </select>
         <p>

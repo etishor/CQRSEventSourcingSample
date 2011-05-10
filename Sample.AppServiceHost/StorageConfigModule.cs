@@ -34,12 +34,19 @@ namespace Sample.AppServiceHost
         private static IStoreEvents BuildEventStore(ILifetimeScope container)
         {
             return EventStore.Wireup.Init()
-                .UsingSqlPersistence("EventStore")
-                    .InitializeStorageEngine()
-                .UsingJsonSerialization()
-                .Compress()
+                // use RavenDb to store events
+                .UsingRavenPersistence("EventStore")
+
+                // OR use SQL to store events 
+                //.UsingSqlPersistence("EventStore")
+                //    .InitializeStorageEngine()
+
+                // Serialization is only needed for SQL since raven has it's own serializer
+                //.UsingJsonSerialization()
+                //.Compress()
+                
                 .UsingAsynchronousDispatcher()
-                    .PublishTo(new DelegateMessagePublisher( c => DispatchCommit(container,c)))
+                    .PublishTo(new DelegateMessagePublisher(c => DispatchCommit(container, c)))
                 .Build();
         }
 

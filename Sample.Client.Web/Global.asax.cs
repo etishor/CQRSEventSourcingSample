@@ -50,8 +50,13 @@ namespace Sample.Client.Web
             ContainerBuilder builder = new ContainerBuilder();
             
             builder.RegisterModule(new BusConfigModule());
-            builder.RegisterModule(new StorageConfigModule());
+
+            // use raven
+            builder.RegisterModule(new RavenConfigModule());
             
+            // or use nhibernate
+            // builder.RegisterModule(new NHibernateConfigModule());
+
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
             containerProvider = new ContainerProvider(builder.Build());

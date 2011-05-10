@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Commands.People
 {
-    public class KillPerson
+    public sealed class KillPerson
     {
         public readonly Guid VictimId;
 

@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Sample.ReadModel.People
 {
-    public class DeadPerson
+    public class DeadPerson : ReadModelEntity
     {
-        public Guid Id { get; set; }
+        public DeadPerson(Guid id) : base(id) { }
+
         public string Name { get; set; }
     }
 }

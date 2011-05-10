@@ -20,10 +20,10 @@ namespace Sample.AppService.Funds
 
         public void Handle(AssociateShareClassToDocument message)
         {
-            Document document = repository.GetById<Document>(message.DocumentId,int.MaxValue);
+            Document document = repository.GetById<Document>(message.DocumentId, int.MaxValue);
 
-            DocumentShareClassAssociation association = 
-                new DocumentShareClassAssociation(document.Id,message.ShareClassId,ShareClassType.CreateFromString(message.ShareClassType));
+            DocumentShareClassAssociation association =
+                new DocumentShareClassAssociation(document.Id, message.ShareClassId, ShareClassType.CreateFromString(message.ShareClassType));
 
             document.AssociateWithShareClass(association);
 

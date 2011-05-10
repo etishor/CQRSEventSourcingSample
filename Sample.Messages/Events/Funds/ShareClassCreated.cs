@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Events.Funds
 {
-    public class ShareClassCreated : IEvent
+    public sealed class ShareClassCreated : IEvent
     {
         public readonly Guid Id;
         public readonly string Ticker;

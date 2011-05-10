@@ -50,18 +50,30 @@
     <Reference Include="NanoMessageBus">
       <HintPath>..\lib\NanoMessageBus\NanoMessageBus.dll</HintPath>
     </Reference>
+    <Reference Include="NanoMessageBus.Serialization.Json">
+      <HintPath>..\lib\NanoMessageBus\Serialization\Json.Net\NanoMessageBus.Serialization.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\lib\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NHibernate">
       <HintPath>..\lib\NHibernate\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.ByteCode.LinFu">
-      <HintPath>..\lib\NHibernate\LinFu\NHibernate.ByteCode.LinFu.dll</HintPath>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\lib\RavenDB\.NET 4.0\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\lib\RavenDB\.NET 4.0\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="StorageAccess">
+      <HintPath>..\lib\StorageAccess\StorageAccess.dll</HintPath>
     </Reference>
     <Reference Include="StorageAccess.NHibernate">
-      <HintPath>..\lib\StorageAccess\NHibernate\StorageAccess.NHibernate.dll</HintPath>
+      <HintPath>..\lib\StorageAccess\StorageAccess.NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="StorageAccess.Raven, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cedb49c4d339376f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\StorageAccess\StorageAccess.Raven.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
@@ -91,6 +103,7 @@
     <Compile Include="Controllers\FundsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="NHibernateConfigModule.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

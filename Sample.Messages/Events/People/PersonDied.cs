@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Messages.Events.People
 {
-    public class PersonDied : IEvent
+    public sealed class PersonDied : IEvent
     {
         public readonly Guid Id;
 

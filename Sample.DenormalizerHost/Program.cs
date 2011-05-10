@@ -2,6 +2,10 @@
 using Autofac;
 using NanoMessageBus.Transports;
 using System.IO;
+using Sample.ReadModel.People;
+using Raven.Client;
+using System.Linq;
+using Sample.ReadModel;
 
 namespace Sample.DenormalizerHost
 {
@@ -13,7 +17,12 @@ namespace Sample.DenormalizerHost
 
             var builder = new ContainerBuilder();
             builder.RegisterModule(new BusConfigModule());
-            builder.RegisterModule(new StorageConfigModule());
+            
+            // use ravendb
+            builder.RegisterModule(new RavenStorageConfigModule());
+            
+            // or use nhibernte 
+            //builder.RegisterModule(new NHibernateStorageConfigModule());
 
             using (var container = builder.Build())
             {

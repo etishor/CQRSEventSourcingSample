@@ -19,9 +19,9 @@ namespace Sample.DomainModel.Funds
         }
 
         public ShareClass(Guid id, Ticker ticker, ShareClassType type)
-            :this(id)
+            : this(id)
         {
-            RaiseEvent(new ShareClassCreated(id, ticker.Symbol , type.Name.ToString()));
+            RaiseEvent(new ShareClassCreated(id, ticker.Symbol, type.Name.ToString()));
         }
 
         private void Apply(ShareClassCreated @event)

@@ -22,7 +22,7 @@ namespace Sample.Denormalizer.People
 
         public void Handle(PersonMoved message)
         {
-            storage.Add(new AddressChanges
+            storage.Add(new AddressChanges(message.Id)
             {
                 NewNumber = message.NewNumber,
                 NewStreet = message.NewStreet,
