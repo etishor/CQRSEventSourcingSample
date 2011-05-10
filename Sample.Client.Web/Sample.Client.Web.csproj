@@ -109,7 +109,7 @@
     </Compile>
     <Compile Include="Models\DocumentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StorageConfigModule.cs" />
+    <Compile Include="RavenConfigModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

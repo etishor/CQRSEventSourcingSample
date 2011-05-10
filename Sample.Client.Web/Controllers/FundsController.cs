@@ -23,8 +23,6 @@ namespace Sample.Client.Web.Controllers
             this.bus = bus;
         }
         
-        //
-        // GET: /Funds/
         [HttpGet]
         public ActionResult Index()
         {

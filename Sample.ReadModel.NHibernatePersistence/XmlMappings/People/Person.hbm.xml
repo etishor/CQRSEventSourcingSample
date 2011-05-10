@@ -19,7 +19,7 @@
     <id name="Id">
       <generator class="assigned"/>
     </id>
-
+    <property name="AggregateId"/>
     <property name="Name"/>
   </class>
 </hibernate-mapping>

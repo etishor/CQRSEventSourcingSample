@@ -7,7 +7,7 @@
     <id name="Id">
       <generator class="guid.comb"/>
     </id>
-
+    <property name="AggregateId"/>
     <property name="OldStreet"/>
     <property name="OldNumber"/>
     <property name="NewStreet"/>

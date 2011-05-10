@@ -7,7 +7,7 @@
     <id name="Id">
       <generator class="assigned"/>
     </id>
-
+    <property name="AggregateId"/>
     <property name="Ticker" column="Ticker"/>
     <property name="Type" column="Type"/>
   </class>
