@@ -13,18 +13,19 @@ For more information on CQRS and Event Sourcing http://cqrsinfo.com/
 ## To Run The Sample
 
 1. You need to create 3 databases in SQL Server 2008 express:
-Sample.Subscriptions
-Sample.EventStore
-Sample.ReadModel
+	* Sample.Subscriptions
+	* Sample.EventStore
+	* Sample.ReadModel
 
-On the Sample.Subscriptions table you need to run the lib\NanoMessageBus\SubscriptionStorage.sql to create
-the table in which NanoMessageBus will store the subscriptions.
+	On the Sample.Subscriptions table you need to run the lib\NanoMessageBus\SubscriptionStorage.sql to create
+	the table in which NanoMessageBus will store the subscriptions.
 
-2. You need to create 4 transactional Queues in MSMQ:
-Sample.AppService
-Sample.Error
-Sample.Denormalizer
-Sample.Client
+2. You need to create 5 transactional Queues in MSMQ:
+	* Sample.AppService
+	* Sample.Error
+	* Sample.Denormalizer
+	* Sample.Client
+	* Sample.ReadModel
 
 
 Description of the sample Domain Models implemented:
